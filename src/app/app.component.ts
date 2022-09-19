@@ -23,9 +23,6 @@ export class AppComponent implements OnInit {
 
   // for signin/signout button preview
   loggedIn() {
-    const pic = this.dp()
-    console.log(pic);
-
     return localStorage.getItem('token');
   }
 
