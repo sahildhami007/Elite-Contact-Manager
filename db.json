@@ -1,0 +1,94 @@
+{
+  "friends": [
+    {
+      "id": 1,
+      "fullname": "Sahil Dhami",
+      "department": "Angular",
+      "email": "sahil@accendos.in",
+      "contactno": "+918580456596",
+      "country": "Iceland"
+    },
+    {
+      "id": 2,
+      "fullname": "Arman",
+      "department": "React",
+      "email": "Arman@gmail.com",
+      "contactno": "9999999999",
+      "country": "United Arab Emirates"
+    },
+    {
+      "id": 3,
+      "fullname": "Sofia",
+      "department": "Hospital Management",
+      "email": "sofia@gmail.com",
+      "contactno": "1231231231",
+      "country": "India"
+    },
+    {
+      "id": 4,
+      "fullname": "w",
+      "department": "w",
+      "email": "w",
+      "contactno": "1231231232",
+      "country": "Bahamas"
+    }
+  ],
+  "signup": [
+    {
+      "name": "admin",
+      "mobile": "1234567890",
+      "email": "admin@gmail.com",
+      "password": "admin",
+      "id": 1
+    },
+    {
+      "name": "s",
+      "mobile": "s",
+      "email": "s",
+      "password": "s",
+      "id": 2
+    },
+    {
+      "name": "sahil dhami",
+      "mobile": "8580456596",
+      "email": "sahildhami85804@gmnail.com",
+      "password": "Sahildhami",
+      "id": 3
+    },
+    {
+      "name": "gagan",
+      "mobile": "1234567890",
+      "email": "gaga@n.com",
+      "password": "Gagan@12345",
+      "id": 4
+    },
+    {
+      "name": "rohan singhania",
+      "mobile": "0000000000",
+      "email": "rohan@d.com",
+      "password": "Rohan@12345",
+      "id": 5
+    },
+    {
+      "name": "rrr",
+      "mobile": "4444444444",
+      "email": "rr@rr.in",
+      "password": "RRrr@1234567",
+      "id": 6
+    },
+    {
+      "name": "sss",
+      "mobile": "3323233232",
+      "email": "dfs@sdfsa.in",
+      "password": "aA1!2d",
+      "id": 7
+    },
+    {
+      "name": "sas",
+      "mobile": "5545454454",
+      "email": "454f@g.in",
+      "password": "aA1!11",
+      "id": 8
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="text-center">
+          <h2 class="heading"><b>Elite Contact Manager Signup</b></h2>
+          <h5>🖤 Get Free Membership here 🖤</h5>
+          <hr>
+        </div>
+
+        <form [formGroup]="signupForm" #form="ngForm" (ngSubmit)="signUp()">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" formControlName="name" class="form-control" placeholder="Enter Name...">
+
+          <div class=" alert alert-danger " *ngIf=" signupForm.controls['name'].dirty &&
+              signupForm.hasError('required', 'name' )">
+            Name is required</div>
+
+          <div *ngIf="!signupForm.hasError('required', 'name' )">
+            <div class="alert alert-danger" *ngIf="!signupForm.get('name')?.valid && signupForm.controls['name'].dirty">
+              Atleast 3 letters (only alphabets allowed)</div>
+          </div>
+
+          <div class="mt-3">
+            <label for="mobile" class="form-label">Mobile No</label>
+            <input type="text" formControlName="mobile" class="form-control" placeholder="Enter Mobile No...">
+
+            <div class="alert alert-danger " *ngIf="signupForm.controls['mobile']
+              .dirty && signupForm.hasError('required', 'mobile')">
+              Mobile number is required</div>
+
+            <div class="alert alert-danger" *ngIf="signupForm.controls['mobile']
+              .dirty && signupForm.hasError('pattern', 'mobile')">
+              Invalid mobile number (only numbers allowed)</div>
+          </div>
+
+          <div class="mt-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" formControlName="email" class="form-control" placeholder="Enter Email...">
+
+            <div class="alert alert-danger" *ngIf="signupForm.controls['email']
+              .dirty && signupForm.hasError('required', 'email')">
+              Email address is required</div>
+
+            <div class="alert alert-danger" *ngIf="signupForm.controls['email']
+              .dirty && signupForm.hasError('pattern', 'email')">
+              Invalid email address</div>
+          </div>
+
+          <div class="mt-3">
+            <label for="password" class="form-label">Password </label>
+            <input type="password" formControlName="password" class="form-control" placeholder="Enter password...">
+
+            <div class="alert alert-danger" *ngIf="signupForm.controls['password']
+              .dirty && signupForm.hasError('required', 'password')">
+              Password is required (minimum 6 charactors)</div>
+
+            <div class="alert alert-danger" *ngIf="signupForm.hasError('pattern', 'password')">
+              Minimum six characters, at least one uppercase letter, one lowercase letter, one number and one special
+              character.</div>
+          </div>
+
+          <app-strength-checker barLabel="Password Strength: " [passwordToVerify]="signupForm.value.password"
+            (passwordStrength)="passwordValid($event)">
+          </app-strength-checker>
+
+        </form>
+
+        <!-- USER SIGN UP -->
+        <button [disabled]="!signupForm.valid" (click)="signUp()" type="submit" class="btn btn-dark   mt-3 mb-1">
+          <span><i class="fa fa-sign-in" aria-hidden="true"></i> Sign Up</span></button>
+        <div>Already Have Member ? <a routerLink="/login">Click here to Login</a></div>
+
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>

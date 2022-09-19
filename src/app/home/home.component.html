@@ -1,0 +1,153 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm" style="text-align: center;">
+      <a routerLink="/friend" role="button" class="btn btn-outline-dark btn-lg btn-block text-center">
+        <span><i class="fa fa-users"></i></span>
+        <br>Members
+      </a>
+    </div>
+
+    <div class="col-sm" style="text-align: center;">
+      <a routerLink="/friend" role="button" class="btn btn-outline-dark btn-lg btn-block text-center">
+        <span><i class="fa fa-users"></i></span>
+        <br>Members
+      </a>
+    </div>
+
+    <div class="col-sm" style="text-align: center;">
+      <a routerLink="/friend" role="button" class="btn btn-outline-dark btn-lg btn-block text-center">
+        <span><i class="fa fa-users"></i></span>
+        <br>Members
+      </a>
+    </div>
+
+    <div class="col-sm" style="text-align: center;">
+      <a routerLink="/dash" role="button" class="btn btn-outline-dark btn-lg btn-block text-center">
+        <span><i class="fa fa-users"></i></span>
+        <br>Dash Comp
+      </a>
+    </div>
+  </div>
+</div>
+<hr>
+
+<!-- CALCULATOR IN CENTER WITHOUT TABLE -->
+<div *ngIf="!tokenValue">
+  <div class="calculator col-sm-3" style="margin: auto;">
+    <h2 class="text-center">Angular Calculator</h2>
+
+    <!-- For input values and operators -->
+    <div class="input-group input-group-sm m-0 p-1" style="height: 45px;">
+      <input type="text" [(ngModel)]="show" readonly class="form-control text-sm-right inp">
+    </div>
+
+    <div class="col-sm-12 p-1 m-0">
+      <button class="btn btn-info col-sm-6" type="button" (click)="allClear()">C</button>
+      <button class="btn btn-warning col-sm-3" type="button" (click)="clear()">Clear</button>
+      <button class="btn btn-secondary col-sm-3" type="button" id="operator/" (click)="pressOpr('/')">/</button>
+    </div>
+
+    <div class="col-sm-12 p-1 m-0">
+      <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" (click)="pressNum('7')">7</button>
+      <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" (click)="pressNum('8')">8</button>
+      <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" (click)="pressNum('9')">9</button>
+      <button class="btn btn-lg btn-secondary col-sm-3 p-1" type="button" id="operator*"
+        (click)="pressOpr('*')">X</button>
+    </div>
+    <div class="col-sm-12 p-1 m-0">
+      <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" (click)="pressNum('4')">4</button>
+      <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" (click)="pressNum('5')">5</button>
+      <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" (click)="pressNum('6')">6</button>
+      <button class="btn btn-lg btn-secondary col-sm-3 p-1" type="button" id="operator-"
+        (click)="pressOpr('-')">-</button>
+    </div>
+    <div class="col-sm-12 p-1 m-0">
+      <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" (click)="pressNum('1')">1</button>
+      <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" (click)="pressNum('2')">2</button>
+      <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" (click)="pressNum('3')">3</button>
+      <button class="btn btn-lg btn-secondary col-sm-3 p-1" type="button" id="operator+"
+        (click)="pressOpr('+')">+</button>
+    </div>
+    <div class="col-sm-12 p-1 m-0">
+      <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" id="operator."
+        (click)="pressOpr('.')">.</button>
+      <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" id="operator0"
+        (click)="pressNum('0')">0</button>
+      <button class="btn btn-lg btn-success col-sm-6 p-1" type="button" (click)="getAnswer()">=</button>
+    </div>
+  </div>
+</div>
+
+<!-- CALCULATOR IN RIGHT WITH USER TABLE -->
+<div *ngIf="tokenValue">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="calculator">
+        <h2 class="text-center">Angular Calculator</h2>
+
+        <!-- For input values and operators -->
+        <div class="input-group input-group-sm m-0 p-1" style="height: 45px;">
+          <input type="text" [(ngModel)]="show" readonly class="form-control text-sm-right inp">
+        </div>
+
+        <div class="col-sm-12 p-1 m-0">
+          <button class="btn btn-info col-sm-6" type="button" (click)="allClear()">C</button>
+          <button class="btn btn-warning col-sm-3" type="button" (click)="clear()">Clear</button>
+          <button class="btn btn-secondary col-sm-3" type="button" id="operator/" (click)="pressOpr('/')">/</button>
+        </div>
+
+        <div class="col-sm-12 p-1 m-0">
+          <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" (click)="pressNum('7')">7</button>
+          <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" (click)="pressNum('8')">8</button>
+          <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" (click)="pressNum('9')">9</button>
+          <button class="btn btn-lg btn-secondary col-sm-3 p-1" type="button" id="operator*"
+            (click)="pressOpr('*')">X</button>
+        </div>
+        <div class="col-sm-12 p-1 m-0">
+          <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" (click)="pressNum('4')">4</button>
+          <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" (click)="pressNum('5')">5</button>
+          <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" (click)="pressNum('6')">6</button>
+          <button class="btn btn-lg btn-secondary col-sm-3 p-1" type="button" id="operator-"
+            (click)="pressOpr('-')">-</button>
+        </div>
+        <div class="col-sm-12 p-1 m-0">
+          <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" (click)="pressNum('1')">1</button>
+          <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" (click)="pressNum('2')">2</button>
+          <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" (click)="pressNum('3')">3</button>
+          <button class="btn btn-lg btn-secondary col-sm-3 p-1" type="button" id="operator+"
+            (click)="pressOpr('+')">+</button>
+        </div>
+        <div class="col-sm-12 p-1 m-0">
+          <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" id="operator."
+            (click)="pressOpr('.')">.</button>
+          <button class="btn btn-lg btn-outline-secondary col-sm-3 p-1" type="button" id="operator0"
+            (click)="pressNum('0')">0</button>
+          <button class="btn btn-lg btn-success col-sm-6 p-1" type="button" (click)="getAnswer()">=</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- REGISTERED USERS TABLE -->
+    <div class="TABLE col-md-9">
+      <h2 class="text-center">All Users</h2>
+      <table class="table table-bordered table-striped mt-3">
+        <thead>
+          <tr>
+            <th style="width: 50px; text-align: center;">ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Contact No.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of allUsers">
+            <td style="text-align: center;"><span><b></b> {{item.id}} </span></td>
+            <td><span> {{item.name}} </span></td>
+            <td><span> {{item.email}} </span></td>
+            <td><span> {{item.mobile}} </span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

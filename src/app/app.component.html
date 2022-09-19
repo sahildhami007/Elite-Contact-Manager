@@ -1,0 +1,29 @@
+
+<!-- Header Area -->
+<nav class="navbar navbar-dark bg-dark mb-3">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/home">
+      <i class="fa-solid fa-mobile-screen-button"> &nbsp; </i><b>Elite Contact Manager</b></a>
+
+    <div class="d-flex">
+      <div class="image">
+        <img class="dp" [src]="">
+      </div>
+
+
+      <button *ngIf="!loggedIn()" routerLink="login" class="btn btn-dark">
+        <i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;<b>Login</b></button>
+
+      <button *ngIf="loggedIn()" (click)="logout()" class="btn btn-dark">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;<b>Logout</b></button>
+
+      <a class="btn btn-dark" href="https://elitewebtechnologies.com/contact-us" target="_blank">
+        <i class="fa-solid fa-address-book"></i>&nbsp;<b>Contact Us</b></a>
+    </div>
+
+  </div>
+</nav>
+
+
+<router-outlet></router-outlet>
+

@@ -1,0 +1,13 @@
+<!-- Password Strentgh-Meter Link- https://codebriefly.com/how-to-manage-password-strength-angular/#Password_Strength_Meter -->
+
+<div *ngIf="msg" class="strength">{{barLabel}}&nbsp;
+  <ul class="strengthBar">
+    <li class="point" [style.background-color]="bar0"></li>
+    <li class="point" [style.background-color]="bar1"></li>
+    <li class="point" [style.background-color]="bar2"></li>
+    <li class="point" [style.background-color]="bar3"></li>
+    <!-- <li class="point" [style.background-color]="bar4"></li> -->
+  </ul>
+  <br>
+  <p class="alert alert-info">{{msg}}</p>
+  </div>

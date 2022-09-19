@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="text-center">
+          <h2 class="heading"><b>Elite Contact Manager Login</b></h2>
+          <h5>🖤 Feel Free to Login here 🖤</h5>
+
+          <p class="horizontal-line-text"></p>
+
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <div>
+            <label for="exampleInputEmail1" class="form-label">Username</label>
+            <input type="email" formControlName="email" class="form-control" placeholder="Enter Email...">
+
+            <div class="alert alert-danger" *ngIf="loginForm.controls['email'].dirty &&
+            loginForm.hasError('required', 'email')">Username is required</div>
+          </div>
+
+          <div class="mt-1 mb-1">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" formControlName="password" class="form-control" placeholder="Enter Password...">
+
+            <div class="alert alert-danger" *ngIf="loginForm.controls['password'].dirty &&
+            loginForm.hasError('required', 'password')">Password is required</div>
+          </div>
+
+          <div *ngIf="user" class="alert alert-danger">
+            Incorrect Username or Password
+          </div>
+
+        </form>
+
+
+
+        <!-- USER LOGIN -->
+        <button [disabled]="!loginForm.valid" (click)="login()" type="submit" class="btn btn-dark btn-block mt-3 mb-2">
+          <span><i class="fa fa-sign-in" aria-hidden="true"></i> Login</span></button>
+        <div> Don't have an Account? <a routerLink="/signup">Resister here</a></div>
+
+        <p class="horizontal-line-text">
+          <span class="spn">or</span>
+        </p>
+
+        <!-- Exernal Login -->
+        <div class="external_login row">
+          <div class="col-md-6">
+            <!-- GOOGLE LOGIN -->
+            <asl-google-signin-button (click)="google()" type="standard" size="large">
+            </asl-google-signin-button>
+            <!-- <button class="btn btn-danger mt-2 btn-block google-sign-in" (click)="google()">
+            <span><i class="fa fa-google"></i>  Sign In with Google</span>
+          </button> -->
+          </div>
+
+          <div class="col-md-6">
+            <!-- FACEBOOK LOGIN -->
+            <!-- <div (click)="facebook()" class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="true"></div> -->
+            <button class="btn btn-primary mt-2 btn-block google-sign-in" (click)="facebook()">
+              <span><i class="fa fa-facebook"></i> Sign In with Facebook</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
