@@ -23,10 +23,11 @@ export class AppComponent implements OnInit {
 
   // for signin/signout button preview
   loggedIn() {
-    const pic = this.dp()
-    console.log(pic);
-
     return localStorage.getItem('token');
+  }
+  loggedIn2() {
+    const pic = this.dp()
+    return localStorage.getItem('photo');
   }
 
   // global sigh out

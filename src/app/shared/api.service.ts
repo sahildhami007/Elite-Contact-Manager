@@ -30,6 +30,7 @@ export class ApiService {
   signOut(): void {
     this.router.navigate(['login']);
     this.authService.signOut();
+    localStorage.clear();
     return localStorage.removeItem('token');
   }
 
