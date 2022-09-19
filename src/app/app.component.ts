@@ -25,6 +25,10 @@ export class AppComponent implements OnInit {
   loggedIn() {
     return localStorage.getItem('token');
   }
+  loggedIn2() {
+    const pic = this.dp()
+    return localStorage.getItem('photo');
+  }
 
   // global sigh out
   logout() {
