@@ -30,10 +30,7 @@
           <div *ngIf="user" class="alert alert-danger">
             Incorrect Username or Password
           </div>
-
         </form>
-
-
 
         <!-- USER LOGIN -->
         <button [disabled]="!loginForm.valid" (click)="login()" type="submit" class="btn btn-dark btn-block mt-3 mb-2">
@@ -44,19 +41,15 @@
           <span class="spn">or</span>
         </p>
 
-        <!-- Exernal Login -->
         <div class="external_login row">
+          <!-- GOOGLE LOGIN -->
           <div class="col-md-6">
-            <!-- GOOGLE LOGIN -->
             <asl-google-signin-button (click)="google()" type="standard" size="large">
             </asl-google-signin-button>
-            <!-- <button class="btn btn-danger mt-2 btn-block google-sign-in" (click)="google()">
-            <span><i class="fa fa-google"></i>  Sign In with Google</span>
-          </button> -->
           </div>
 
+          <!-- FACEBOOK LOGIN -->
           <div class="col-md-6">
-            <!-- FACEBOOK LOGIN -->
             <!-- <div (click)="facebook()" class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="true"></div> -->
             <button class="btn btn-primary mt-2 btn-block google-sign-in" (click)="facebook()">
               <span><i class="fa fa-facebook"></i> Sign In with Facebook</span>
@@ -65,6 +58,6 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3"></div>
+    <div class="col-md-3"> </div>
   </div>
 </div>

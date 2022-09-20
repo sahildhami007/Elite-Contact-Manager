@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ApiService } from './shared/api.service';
 
 @Component({
@@ -8,26 +7,22 @@ import { ApiService } from './shared/api.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  photoUrl: any;
 
-  constructor(private router: Router, private api: ApiService) { }
+  constructor(private api: ApiService) { }
 
-  ngOnInit(): void {
-    this.dp();
-    this.loggedIn();
-  }
+  ngOnInit(): void { }
 
-  // for dp, if availabe
-  dp() {
-    return localStorage.getItem('photo');
+  parentfunc(data: any) {
+    console.log(data);
+
+    // this.photoUrl = data;
+    // console.log(this.photoUrl);
   }
 
   // for signin/signout button preview
   loggedIn() {
     return localStorage.getItem('token');
-  }
-  loggedIn2() {
-    const pic = this.dp()
-    return localStorage.getItem('photo');
   }
 
   // global sigh out

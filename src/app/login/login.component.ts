@@ -2,10 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService } from '../shared/api.service';
-import {
-  SocialAuthService, GoogleLoginProvider, FacebookLoginProvider, SocialUser
-} from '@abacritt/angularx-social-login';
+import { SocialAuthService, GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -18,34 +15,32 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   user: any;
   tokenHardValue = '1096116863490-snd9d0jjr0hlhbq8dlsi2d5i1kfp7lrc.apps.googleusercontent.com';
-  socialuser!: SocialUser;
-  loggedIn!: boolean;
 
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router,
     private authService: SocialAuthService,
-    private api: ApiService
-  ) { }
+  ) {  }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
-    this.googleBraker()
+    this.googleBreaker();
 
   }
 
-  googleBraker(){
+  googleBreaker() {
     this.authService.authState.subscribe((userData) => {
-      // on success
-      this.loggedIn = (userData != null);
-      localStorage.setItem('token', JSON.stringify(userData.idToken));
-      localStorage.setItem('photo', JSON.stringify(userData.photoUrl));
+      this.user = userData;
+      localStorage.setItem('photoUrl', JSON.stringify(this.user.photoUrl));
+      localStorage.setItem('token', JSON.stringify(this.user.idToken));
       this.router.navigate(['/home']);
       console.log("You're Logged In (by google)");
+      // window.location.reload();
+      this.router.navigate(['/home']);
     }, err => {
       console.log("google ERROR-- " + err);
     });
@@ -62,7 +57,6 @@ export class LoginComponent implements OnInit {
       .then((userData) => { // on success
         console.log(userData.email);
         console.log("You're Logged In (by facebook)");
-
       }, (err) => {
         console.log("fb ERROR-- " + err);
       })
@@ -85,7 +79,6 @@ export class LoginComponent implements OnInit {
         this.user = true;
         console.log('wrong credientials entered');
         console.log('start JSON SERVER with this cmd: json-server --watch db.json');
-
       }
     });
   }
@@ -95,11 +88,3 @@ export class LoginComponent implements OnInit {
 
 
 // https://www.youtube.com/watch?v=G5HPBdZgcx8
-
-
-// this.authService.authState.subscribe((userData) => {
-//   // this.socialuser = userData;
-//   console.log(userData);
-//   this.router.navigate(['/home'])
-//   this.loggedIn = (userData != null);
-// });
