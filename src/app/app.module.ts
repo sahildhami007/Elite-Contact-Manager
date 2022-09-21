@@ -46,7 +46,8 @@ const facebook_APP_ID = '408048204743842';
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(google_CLIENT_ID)
+            provider: new GoogleLoginProvider(
+              "1096116863490-snd9d0jjr0hlhbq8dlsi2d5i1kfp7lrc.apps.googleusercontent.com")
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,

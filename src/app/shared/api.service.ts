@@ -2,9 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  SocialAuthService, GoogleLoginProvider, FacebookLoginProvider, SocialUser
-} from '@abacritt/angularx-social-login';
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 
 @Injectable({
   providedIn: 'root'
@@ -12,26 +10,24 @@ import {
 
 export class ApiService {
   apiUrl = 'http://localhost:3000/';
-  socialuser!: SocialUser;
-  loggedIn!: boolean;
 
   constructor(
     private http: HttpClient,
     private router: Router,
     private authService: SocialAuthService
-  ) {  }
+  ) { }
 
-  // refresh token
-  refreshToken(): void {
-    this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
-  }
+  // sigh out global
+  signOut() {
+    try {
+      this.authService.signOut();
+      console.log('api logout');
+      this.router.navigate(['login']);
+      return localStorage.clear();
+    } catch (error) {
+      console.log("err: " + error);
+    }
 
-  // global sigh out
-  signOut(): void {
-    this.router.navigate(['login']);
-    this.authService.signOut();
-    localStorage.clear();
-    return localStorage.removeItem('token');
   }
 
   // post user

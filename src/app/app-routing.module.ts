@@ -9,7 +9,6 @@ import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  // { path: 'dash', component: DashComponent },
   { path: 'home', component: HomeComponent },
   { path: 'friend', component: FriendComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent},

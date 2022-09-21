@@ -9,8 +9,7 @@ export class AuthGuard implements CanActivate {
   constructor() { }
 
   canActivate() {
-    if (localStorage.getItem('token')) {
-      
+    if (localStorage.getItem('loginStatus')) {
       return true;
     }
     else {

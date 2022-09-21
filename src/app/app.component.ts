@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginComponent } from './login/login.component';
 import { ApiService } from './shared/api.service';
 
 @Component({
@@ -6,16 +7,17 @@ import { ApiService } from './shared/api.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
-  photoUrl: any;
 
-  constructor(private api: ApiService) { }
+export class AppComponent implements OnInit {
+  // photoUrl: any;
+
+  constructor(private api: ApiService ) { }
 
   ngOnInit(): void { }
 
   // for signin/signout button preview
   loggedIn() {
-    return localStorage.getItem('token');
+    return localStorage.getItem('loginStatus');
   }
 
   // global sigh out

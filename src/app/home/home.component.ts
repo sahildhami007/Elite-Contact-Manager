@@ -8,8 +8,7 @@ import { ApiService } from '../shared/api.service';
 })
 export class HomeComponent implements OnInit {
   allUsers: any;
-  tokenValue: any = '';
-  ui!: boolean;
+  loginStatus: any;
   show = '0';
   currentValue = '';
 
@@ -23,7 +22,7 @@ export class HomeComponent implements OnInit {
   signUpView() {
     this.api.getAllSignUps().subscribe((res) => {
       this.allUsers = res;
-      this.tokenValue = localStorage.getItem('token');
+      this.loginStatus = localStorage.getItem('loginStatus');
     });
   }
 

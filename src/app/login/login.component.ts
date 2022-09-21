@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SocialAuthService, GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-social-login';
+import { FacebookLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { ApiService } from '../shared/api.service';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +14,17 @@ import { SocialAuthService, GoogleLoginProvider, FacebookLoginProvider } from '@
 export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
-  user: any;
-  tokenHardValue = '1096116863490-snd9d0jjr0hlhbq8dlsi2d5i1kfp7lrc.apps.googleusercontent.com';
+  loginUser!: SocialUser;
+  idToken = '1096116863490-snd9d0jjr0hlhbq8dlsi2d5i1kfp7lrc.apps.googleusercontent.com';
+  loginStatus!: boolean;
+  invalidCredientials!: boolean;
+  photoUrl!: string;
 
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router,
+    private api: ApiService,
     private authService: SocialAuthService) { }
 
   ngOnInit(): void {
@@ -28,57 +33,63 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]],
     });
 
-    this.googleBreaker();
+    this.googleService();
   }
 
-  googleBreaker() {
+  googleService() {
     this.authService.authState.subscribe((userData) => {
-      localStorage.setItem('token', JSON.stringify(userData.idToken));
-      localStorage.setItem('photo', JSON.stringify(userData.photoUrl));
-      this.router.navigate(['/home']);
-      console.log("google login");
+      if (userData) {
+        this.loginStatus = true;
+        this.photoUrl = userData.photoUrl;
+        localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
+        localStorage.setItem('idToken', JSON.stringify(userData.idToken));
+        localStorage.setItem('photoUrl', JSON.stringify(userData.photoUrl));
+        this.router.navigate(['/home']);
+        console.log("google login");
+        console.log("photoUrl: "+ this.photoUrl);
+      } else {
+        // this.authService.signOut();
+        console.log('else google logout');
+        console.log("else photoUrl: "+ this.photoUrl);
+        return localStorage.clear();
+      }
     }, err => {
-      console.log("google ERROR-- " + err);
+      console.log("err: " + err);
     });
-  }
-
-  // google signin
-  google() {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
   }
 
   // facebook signin
   facebook() {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((userData) => {
-      this.user = userData;
-      console.log(this.user);
-      console.log("facebook login");
-    }, (err) => {
-      console.log("fb ERROR-- " + err);
-    })
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
+    // .then((userData) => {
+    //   this.loginUser = userData;
+    //   console.log(this.loginUser);
+    //   console.log("facebook login");
+    // }, (err) => {
+    //   console.log("fb ERROR-- " + err);
+    // })
   }
 
   // user signin
   login() {
     this.http.get<any>('http://localhost:3000/signup').subscribe((res) => {
-      this.user = res.find((a: any) => {
+      this.loginUser = res.find((a: any) => {
         return (a.email === this.loginForm.value.email
           && a.password === this.loginForm.value.password);
       });
-      if (this.user) {
-        localStorage.setItem('token', JSON.stringify(this.tokenHardValue));
+      if (this.loginUser) {
+        this.loginStatus = true;
+        localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
+        // localStorage.setItem('idToken', JSON.stringify(this.idToken));
         this.router.navigate(['/home']);
         console.log("user login");
-      } else {
-        this.user = true;
-        console.log('wrong credientials entered');
-        console.log('start JSON SERVER with this cmd: json-server --watch db.json');
+      } else if (!this.loginUser) {
+        this.invalidCredientials = true;
+        console.log('err: Wrong credentials entered, If credentials are right then start JSON SERVER with this cmd: json-server --watch db.json');
       }
     });
   }
 
 
 }
-
-
 // https://www.youtube.com/watch?v=G5HPBdZgcx8
