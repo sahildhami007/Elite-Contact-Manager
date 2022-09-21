@@ -1,21 +1,12 @@
-
-
 <nav class="navbar navbar-dark bg-dark mb-3">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/home">
       <i class="fa-solid fa-mobile-screen-button"> &nbsp; </i><b>Elite Contact Manager</b></a>
 
     <div class="d-flex">
-<<<<<<< HEAD
-=======
-      <div *ngIf="loggedIn2()" class="image">
+      <div *ngIf="loggedIn()" class="image">
         <img class="dp" src="assets/1.jpg">
       </div>
->>>>>>> develop
-
-      <!--<div *ngIf="loggedIn()" class="image">
-        <img class="dp" src="assets/3.jpg">
-      </div> -->
 
       <button *ngIf="!loggedIn()" routerLink="login" class="btn btn-dark">
         <i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;<b>Login</b></button>
@@ -26,13 +17,7 @@
       <a class="btn btn-dark" href="https://elitewebtechnologies.com/contact-us" target="_blank">
         <i class="fa-solid fa-address-book"></i>&nbsp;<b>Contact Us</b></a>
     </div>
-
   </div>
 </nav>
 
-<app-dp (dp)="parentfunc($event)" ></app-dp>
-
-
-
 <router-outlet></router-outlet>
-

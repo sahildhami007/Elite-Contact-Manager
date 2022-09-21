@@ -31,24 +31,12 @@ export class LoginComponent implements OnInit {
     this.googleBreaker();
   }
 
-<<<<<<< HEAD
   googleBreaker() {
-    this.authService.authState.subscribe((userData) => {
-      this.user = userData;
-      localStorage.setItem('photoUrl', JSON.stringify(this.user.photoUrl));
-      localStorage.setItem('token', JSON.stringify(this.user.idToken));
-      this.router.navigate(['/home']);
-      console.log("You're Logged In (by google)");
-      // window.location.reload();
-      this.router.navigate(['/home']);
-=======
-  googleBraker() {
     this.authService.authState.subscribe((userData) => {
       localStorage.setItem('token', JSON.stringify(userData.idToken));
       localStorage.setItem('photo', JSON.stringify(userData.photoUrl));
       this.router.navigate(['/home']);
       console.log("google login");
->>>>>>> develop
     }, err => {
       console.log("google ERROR-- " + err);
     });
@@ -61,15 +49,6 @@ export class LoginComponent implements OnInit {
 
   // facebook signin
   facebook() {
-<<<<<<< HEAD
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
-      .then((userData) => { // on success
-        console.log(userData.email);
-        console.log("You're Logged In (by facebook)");
-      }, (err) => {
-        console.log("fb ERROR-- " + err);
-      })
-=======
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((userData) => {
       this.user = userData;
       console.log(this.user);
@@ -77,7 +56,6 @@ export class LoginComponent implements OnInit {
     }, (err) => {
       console.log("fb ERROR-- " + err);
     })
->>>>>>> develop
   }
 
   // user signin

@@ -13,13 +13,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  parentfunc(data: any) {
-    console.log(data);
-
-    // this.photoUrl = data;
-    // console.log(this.photoUrl);
-  }
-
   // for signin/signout button preview
   loggedIn() {
     return localStorage.getItem('token');

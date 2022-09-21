@@ -12,10 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './shared/api.service';
 import { AuthGuard } from './shared/auth.guard';
 import { LoginComponent } from './login/login.component';
-import {
-  SocialLoginModule, GoogleLoginProvider, FacebookLoginProvider, SocialAuthServiceConfig
-} from '@abacritt/angularx-social-login';
-import { DpComponent } from './dp/dp.component';
+import { SocialLoginModule, GoogleLoginProvider, FacebookLoginProvider, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 
 const google_CLIENT_ID = '1096116863490-snd9d0jjr0hlhbq8dlsi2d5i1kfp7lrc.apps.googleusercontent.com';
 const facebook_APP_ID = '408048204743842';
@@ -29,7 +26,7 @@ const facebook_APP_ID = '408048204743842';
     SignupComponent,
     StrengthCheckerComponent,
     LoginComponent,
-    DpComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -65,4 +62,5 @@ const facebook_APP_ID = '408048204743842';
   bootstrap: [AppComponent],
 })
 export class AppModule { }
+
 // npm i @abacritt/angularx-social-login --f
