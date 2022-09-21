@@ -20,18 +20,18 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router,
-    private authService: SocialAuthService,
-  ) {  }
+    private authService: SocialAuthService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
-    this.googleBreaker();
 
+    this.googleBreaker();
   }
 
+<<<<<<< HEAD
   googleBreaker() {
     this.authService.authState.subscribe((userData) => {
       this.user = userData;
@@ -41,6 +41,14 @@ export class LoginComponent implements OnInit {
       console.log("You're Logged In (by google)");
       // window.location.reload();
       this.router.navigate(['/home']);
+=======
+  googleBraker() {
+    this.authService.authState.subscribe((userData) => {
+      localStorage.setItem('token', JSON.stringify(userData.idToken));
+      localStorage.setItem('photo', JSON.stringify(userData.photoUrl));
+      this.router.navigate(['/home']);
+      console.log("google login");
+>>>>>>> develop
     }, err => {
       console.log("google ERROR-- " + err);
     });
@@ -53,6 +61,7 @@ export class LoginComponent implements OnInit {
 
   // facebook signin
   facebook() {
+<<<<<<< HEAD
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
       .then((userData) => { // on success
         console.log(userData.email);
@@ -60,21 +69,28 @@ export class LoginComponent implements OnInit {
       }, (err) => {
         console.log("fb ERROR-- " + err);
       })
+=======
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((userData) => {
+      this.user = userData;
+      console.log(this.user);
+      console.log("facebook login");
+    }, (err) => {
+      console.log("fb ERROR-- " + err);
+    })
+>>>>>>> develop
   }
 
   // user signin
   login() {
     this.http.get<any>('http://localhost:3000/signup').subscribe((res) => {
       this.user = res.find((a: any) => {
-        return (
-          a.email === this.loginForm.value.email &&
-          a.password === this.loginForm.value.password
-        );
+        return (a.email === this.loginForm.value.email
+          && a.password === this.loginForm.value.password);
       });
       if (this.user) {
         localStorage.setItem('token', JSON.stringify(this.tokenHardValue));
         this.router.navigate(['/home']);
-        console.log("You're Logged In (by user sighup)");
+        console.log("user login");
       } else {
         this.user = true;
         console.log('wrong credientials entered');
