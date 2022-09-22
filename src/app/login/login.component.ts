@@ -12,7 +12,6 @@ import { ApiService } from '../shared/api.service';
 })
 
 export class LoginComponent implements OnInit {
-
   loginForm!: FormGroup;
   loginUser!: SocialUser;
   idToken = '1096116863490-snd9d0jjr0hlhbq8dlsi2d5i1kfp7lrc.apps.googleusercontent.com';
