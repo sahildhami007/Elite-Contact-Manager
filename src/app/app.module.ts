@@ -27,6 +27,7 @@ const facebook_APP_ID = '408048204743842';
     StrengthCheckerComponent,
     LoginComponent,
 
+
   ],
   imports: [
     BrowserModule,
