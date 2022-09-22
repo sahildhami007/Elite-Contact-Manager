@@ -6,7 +6,7 @@
       "department": "Angular",
       "email": "sahil@accendos.in",
       "contactno": "+918580456596",
-      "country": "Iceland"
+      "country": "India"
     },
     {
       "id": 2,
@@ -23,14 +23,6 @@
       "email": "sofia@gmail.com",
       "contactno": "1231231231",
       "country": "India"
-    },
-    {
-      "id": 4,
-      "fullname": "w",
-      "department": "w",
-      "email": "w",
-      "contactno": "1231231232",
-      "country": "Bahamas"
     }
   ],
   "signup": [
@@ -61,34 +53,6 @@
       "email": "gaga@n.com",
       "password": "Gagan@12345",
       "id": 4
-    },
-    {
-      "name": "rohan singhania",
-      "mobile": "0000000000",
-      "email": "rohan@d.com",
-      "password": "Rohan@12345",
-      "id": 5
-    },
-    {
-      "name": "rrr",
-      "mobile": "4444444444",
-      "email": "rr@rr.in",
-      "password": "RRrr@1234567",
-      "id": 6
-    },
-    {
-      "name": "sss",
-      "mobile": "3323233232",
-      "email": "dfs@sdfsa.in",
-      "password": "aA1!2d",
-      "id": 7
-    },
-    {
-      "name": "sas",
-      "mobile": "5545454454",
-      "email": "454f@g.in",
-      "password": "aA1!11",
-      "id": 8
     }
   ]
 }
