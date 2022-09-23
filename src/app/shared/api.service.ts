@@ -27,7 +27,6 @@ export class ApiService {
     } catch (error) {
       console.log("err: " + error);
     }
-
   }
 
   // post user

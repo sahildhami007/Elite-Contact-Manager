@@ -13,9 +13,8 @@ import { ApiService } from './shared/api.service';
 import { AuthGuard } from './shared/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { SocialLoginModule, GoogleLoginProvider, FacebookLoginProvider, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import { DpImageComponent } from './dp-image/dp-image.component';
 
-const google_CLIENT_ID = '1096116863490-snd9d0jjr0hlhbq8dlsi2d5i1kfp7lrc.apps.googleusercontent.com';
-const facebook_APP_ID = '408048204743842';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,7 @@ const facebook_APP_ID = '408048204743842';
     SignupComponent,
     StrengthCheckerComponent,
     LoginComponent,
-
+    DpImageComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +50,7 @@ const facebook_APP_ID = '408048204743842';
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider(facebook_APP_ID)
+            provider: new FacebookLoginProvider('408048204743842')
           }
         ],
         onError: (err) => {

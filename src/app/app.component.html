@@ -5,7 +5,7 @@
 
     <div class="d-flex">
       <div *ngIf="loggedIn()" class="image">
-        <img class="dp" src="assets/1.jpg">
+        <app-dp-image></app-dp-image>
       </div>
 
       <button *ngIf="!loggedIn()" routerLink="login" class="btn btn-dark">
