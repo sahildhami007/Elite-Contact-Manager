@@ -14,20 +14,15 @@ export class ApiService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private authService: SocialAuthService
-  ) { }
+    private authService: SocialAuthService ) { }
 
-  // sigh out global
-  signOut() {
-    try {
-      this.authService.signOut();
-      console.log('api logout');
-      this.router.navigate(['login']);
-      return localStorage.clear();
-    } catch (error) {
-      console.log("err: " + error);
-    }
-
+  // signout
+  signOut(): void {
+    localStorage.removeItem('google_auth');
+    this.authService.signOut();
+    console.log('api logout');
+    this.router.navigate(['login']).then();
+    return localStorage.clear();
   }
 
   // post user
@@ -54,6 +49,5 @@ export class ApiService {
   getAllSignUps() {
     return this.http.get<any>(this.apiUrl + 'signup');
   }
-
 
 }
