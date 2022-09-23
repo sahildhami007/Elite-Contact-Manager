@@ -13,8 +13,6 @@ import { ApiService } from './shared/api.service';
 import { AuthGuard } from './shared/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { SocialLoginModule, GoogleLoginProvider, FacebookLoginProvider, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
-import { DpImageComponent } from './dp-image/dp-image.component';
-
 
 @NgModule({
   declarations: [
@@ -25,7 +23,7 @@ import { DpImageComponent } from './dp-image/dp-image.component';
     SignupComponent,
     StrengthCheckerComponent,
     LoginComponent,
-    DpImageComponent
+
   ],
   imports: [
     BrowserModule,
@@ -33,7 +31,8 @@ import { DpImageComponent } from './dp-image/dp-image.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SocialLoginModule
+    SocialLoginModule,
+
   ],
   providers: [
     AuthGuard,
@@ -54,13 +53,14 @@ import { DpImageComponent } from './dp-image/dp-image.component';
           }
         ],
         onError: (err) => {
-          console.error(err);
+          console.error("err from appModule.ts: "+err);
         }
       } as SocialAuthServiceConfig
     }
   ],
   bootstrap: [AppComponent],
 })
+
 export class AppModule { }
 
 // npm i @abacritt/angularx-social-login --f

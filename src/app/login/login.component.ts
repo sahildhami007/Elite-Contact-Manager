@@ -13,12 +13,10 @@ import { ApiService } from '../shared/api.service';
 
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  loginUser!: SocialUser;
+  loginUser!: SocialUser | any;
   idToken = '1096116863490-snd9d0jjr0hlhbq8dlsi2d5i1kfp7lrc.apps.googleusercontent.com';
   loginStatus: boolean = false;
   invalidCredientials: boolean = false;
-  photoUrl!: string;
-  photoUrl2 = 'assets/2.jp'
 
   constructor(
     private fb: FormBuilder,
@@ -28,6 +26,7 @@ export class LoginComponent implements OnInit {
     private authService: SocialAuthService) { }
 
   ngOnInit(): void {
+
     this.loginForm = this.fb.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -37,66 +36,63 @@ export class LoginComponent implements OnInit {
   }
 
   googleService() {
-    this.authService.authState.subscribe((userData) => {
-      if (userData) {
+    this.authService.authState.subscribe((loginUser) => {
+      if (loginUser) {
         this.loginStatus = true;
-        this.photoUrl = userData.photoUrl;
         localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
-        localStorage.setItem('idToken', JSON.stringify(userData.idToken));
-        // this.router.navigate(['/home']);
+        localStorage.setItem('google_auth', JSON.stringify(loginUser));
         console.log("google login");
+        this.router.navigate(['/home']).then();
       } else {
         this.loginStatus = false;
-        // this.authService.signOut();
-        console.log('else google logout');
-        console.log("else photoUrl: " + this.photoUrl);
-        return localStorage.clear();
       }
     }, err => {
-      console.log("err: " + err);
+      console.log("google err: " + err);
     });
   }
 
   // facebook signin
   facebook() {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
-      .then((userData) => {
-        this.loginUser = userData;
-        console.log(this.loginUser);
-        console.log("facebook login");
-        this.router.navigate(['/home']);
-      }, (err) => {
-        console.log("fb ERROR-- " + err);
-      })
+    alert("Sorry!  Having some issues with Facebook login. You can either use Google login or Sigh Up method.")
+    // this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((loginUser) => {
+    //   if (loginUser) {
+    //     this.loginStatus = true;
+    //     localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
+    //     localStorage.setItem('facebook_auth', JSON.stringify(loginUser));
+    //     console.log("fb login");
+    //     this.router.navigate(['/home']).then();
+    //   } else {
+    //     this.loginStatus = false;
+    //   }
+    // }, (err) => {
+    //   console.log("fb err: " + err);
+    // })
   }
 
   // user signin
   login() {
     this.http.get<any>('http://localhost:3000/signup').subscribe((res) => {
+
       this.loginUser = res.find((a: any) => {
         return (a.email === this.loginForm.value.email
           && a.password === this.loginForm.value.password);
       });
+
       if (this.loginUser) {
         this.loginStatus = true;
-        this.photoUrl = 'assets/2.jpg';
         localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
-        // localStorage.setItem('idToken', JSON.stringify(this.idToken));
-        // this.router.navigate(['/home']);
+        localStorage.setItem('user_auth', JSON.stringify(this.loginUser));
         console.log("user login");
         this.loginForm.reset();
-      }
-      // else if (!this.loginUser) {
-      //   this.loginStatus = false;
-      //   this.invalidCredientials = true;
-      //   console.log('err: Wrong credentials entered, If credentials are right then start JSON SERVER with this cmd: json-server --watch db.json');
-      // }
-      else {
+        this.router.navigate(['/home']).then();
+      } else {
         this.loginStatus = false;
         this.invalidCredientials = true;
         console.log('err: Wrong credentials entered, If credentials are right then start JSON SERVER with this cmd: json-server --watch db.json');
       }
-    });
+    }, (err) => {
+      console.log("user err: " + err);
+    })
   }
 
 

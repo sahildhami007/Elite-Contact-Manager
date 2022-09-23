@@ -4,8 +4,14 @@
       <i class="fa-solid fa-mobile-screen-button"> &nbsp; </i><b>Elite Contact Manager</b></a>
 
     <div class="d-flex">
+
       <div *ngIf="loggedIn()" class="image">
-        <app-dp-image></app-dp-image>
+        <div *ngIf="googleData" >
+          <img [src]="googleData?.photoUrl" alt="google_image">
+        </div>
+        <div *ngIf="userData" >
+          <img src="assets/2.jpg" alt="user_image">
+        </div>
       </div>
 
       <button *ngIf="!loggedIn()" routerLink="login" class="btn btn-dark">
