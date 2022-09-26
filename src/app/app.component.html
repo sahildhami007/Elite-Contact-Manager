@@ -6,12 +6,12 @@
     <div class="d-flex">
 
       <div *ngIf="loggedIn()" class="image">
-        <div *ngIf="googleData" >
-          <img [src]="googleData?.photoUrl" alt="google_image">
-        </div>
-        <div *ngIf="userData" >
+        <!-- <div *ngIf="googleData"> -->
+          <img [src]="photoUrl" alt="google_image">
+        <!-- </div> -->
+        <!-- <div *ngIf="!googleData" >
           <img src="assets/2.jpg" alt="user_image">
-        </div>
+        </div> -->
       </div>
 
       <button *ngIf="!loggedIn()" routerLink="login" class="btn btn-dark">

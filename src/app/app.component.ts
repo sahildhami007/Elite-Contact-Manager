@@ -26,9 +26,12 @@ export class AppComponent implements OnInit {
     } else {
       this.logout();
     }
+
    }
 
   loggedIn() {
+    if(this.googleData){ this.photoUrl = this.googleData.photoUrl }
+    if (this.userData){ this.photoUrl = 'assets/2.jpg'}
     return localStorage.getItem('loginStatus');
   }
 
