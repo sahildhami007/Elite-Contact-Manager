@@ -13,6 +13,7 @@ import { ApiService } from './shared/api.service';
 import { AuthGuard } from './shared/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { SocialLoginModule, GoogleLoginProvider, FacebookLoginProvider, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import { XyzComponent } from './xyz/xyz.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SocialLoginModule, GoogleLoginProvider, FacebookLoginProvider, SocialAu
     SignupComponent,
     StrengthCheckerComponent,
     LoginComponent,
+    XyzComponent,
 
   ],
   imports: [
@@ -52,7 +54,7 @@ import { SocialLoginModule, GoogleLoginProvider, FacebookLoginProvider, SocialAu
           }
         ],
         onError: (err) => {
-          console.error(err);
+          console.error("appModule  "+err);
         }
       } as SocialAuthServiceConfig
     }

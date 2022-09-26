@@ -24,24 +24,21 @@ export class AppComponent implements OnInit {
     } else if (user_storage){
       this.userData = JSON.parse(user_storage);
     } else {
-      // this.api.signOut();
-      this.signOut();
+      this.logout();
     }
    }
 
-   signOut(): void {
-    localStorage.clear();
-    this.router.navigate(['login']).then();
-   }
-
-  // for signin/signout button preview
   loggedIn() {
-    // this.photoUrl = userData.photoUrl
     return localStorage.getItem('loginStatus');
   }
 
-  // global sigh out
   logout() {
-    this.api.signOut();
+    if (localStorage.getItem('user_auth')) {
+      console.log('user logout');
+      this.router.navigate(['login']).then();
+      return localStorage.clear();
+    } else {
+      this.api.signOut();
+    }
   }
 }

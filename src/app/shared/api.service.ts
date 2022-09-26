@@ -14,11 +14,10 @@ export class ApiService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private authService: SocialAuthService ) { }
+    private authService: SocialAuthService) { }
 
-  // signout
+  // auth_signout
   signOut(): void {
-    localStorage.removeItem('google_auth');
     this.authService.signOut();
     console.log('api logout');
     this.router.navigate(['login']).then();
