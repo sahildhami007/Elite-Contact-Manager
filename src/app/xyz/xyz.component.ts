@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SocialAuthService } from "angularx-social-login";
+import { SocialUser } from "angularx-social-login";
 
 @Component({
   selector: 'app-xyz',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class XyzComponent implements OnInit {
 
+  pic: any;
+  
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

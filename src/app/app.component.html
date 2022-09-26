@@ -5,25 +5,39 @@
 
     <div class="d-flex">
 
-      <div *ngIf="loggedIn()" class="image">
-        <div *ngIf="googleData" >
-          <img [src]="googleData?.photoUrl" alt="google_image">
-        </div>
-        <div *ngIf="userData" >
-          <img src="assets/2.jpg" alt="user_image">
-        </div>
+      <div class="upper-div d-flex">
+        <h4>{{dateTime | date:'HH:mm:ss'}}</h4>
+        <!-- <h6 class="mt-1">{{dateTime | date: 'd MMMM y'}}</h6> -->
+        <!-- <p>{{dateTime | date:'short'}}</p> -->
+        <!-- <p>Mon Sep 26 2022 16:48:28 GMT+0530 (India Standard Time)</p> -->
       </div>
 
-      <button *ngIf="!loggedIn()" routerLink="login" class="btn btn-dark">
-        <i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;<b>Login</b></button>
+      <div class="lower-div d-flex">
+        <div *ngIf="loggedIn()" class="image">
+          <div *ngIf="googleData">
+            <img [src]="googleData?.photoUrl" alt="google_image">
+          </div>
+          <div *ngIf="userData">
+            <img src="assets/2.jpg" alt="user_image">
+          </div>
+        </div>
 
-      <button *ngIf="loggedIn()" (click)="logout()" class="btn btn-dark">
-        <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;<b>Logout</b></button>
+        <button *ngIf="!loggedIn()" routerLink="login" class="btn btn-dark">
+          <i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;<b>Login</b></button>
 
-      <a class="btn btn-dark" href="https://elitewebtechnologies.com/contact-us" target="_blank">
-        <i class="fa-solid fa-address-book"></i>&nbsp;<b>Contact Us</b></a>
+        <button *ngIf="loggedIn()" (click)="logout()" class="btn btn-dark">
+          <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;<b>Logout</b></button>
+
+        <a class="btn btn-dark" href="https://elitewebtechnologies.com/contact-us" target="_blank">
+          <i class="fa-solid fa-address-book"></i>&nbsp;<b>Contact Us</b>
+        </a>
+      </div>
+
+
     </div>
   </div>
 </nav>
+
+<!-- <app-xyz></app-xyz> -->
 
 <router-outlet></router-outlet>

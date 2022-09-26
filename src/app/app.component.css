@@ -1,7 +1,17 @@
 img{
-  border-radius: 20px;
+  border-radius: 25px;
   height: 40px;
   width: 40px;
   margin-right: 5px;
   color: white;
 }
+.lower-div{
+  color: white;
+  margin-top: 12%;
+}
+.upper-div{
+  color: white;
+  position: absolute;
+  right: 2%;
+}
+
