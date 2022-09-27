@@ -4,14 +4,20 @@
       <i class="fa-solid fa-mobile-screen-button"> &nbsp; </i><b>Elite Contact Manager</b></a>
 
     <div class="d-flex">
+      <div class="upper-div d-flex">
+        <h4>{{dateTime | date:'HH:mm:ss'}}</h4>
+        <!-- <h6 class="mt-1">{{dateTime | date: 'd MMMM y'}}</h6> -->
+      </div>
 
-      <div *ngIf="loggedIn()" class="image">
-        <!-- <div *ngIf="googleData"> -->
-          <img [src]="photoUrl" alt="google_image">
-        <!-- </div> -->
-        <!-- <div *ngIf="!googleData" >
-          <img src="assets/2.jpg" alt="user_image">
-        </div> -->
+      <div class="lower-div d-flex">
+        <img [src]="photoUrl" alt="google_image">
+        <!-- <div *ngIf="loggedIn()" class="image">
+          <div *ngIf="googleData">
+            <img [src]="googleData?.photoUrl" alt="google_image">
+          </div>
+          <div *ngIf="userData">
+            <img src="assets/2.jpg" alt="user_image">
+          </div> -->
       </div>
 
       <button *ngIf="!loggedIn()" routerLink="login" class="btn btn-dark">
@@ -21,9 +27,14 @@
         <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;<b>Logout</b></button>
 
       <a class="btn btn-dark" href="https://elitewebtechnologies.com/contact-us" target="_blank">
-        <i class="fa-solid fa-address-book"></i>&nbsp;<b>Contact Us</b></a>
+        <i class="fa-solid fa-address-book"></i>&nbsp;<b>Contact Us</b>
+      </a>
     </div>
+
+
   </div>
 </nav>
+
+<!-- <app-xyz></app-xyz> -->
 
 <router-outlet></router-outlet>
