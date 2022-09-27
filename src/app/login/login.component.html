@@ -46,14 +46,18 @@
 
           <!-- GOOGLE LOGIN -->
           <div class="col-md-6">
-            <asl-google-signin-button type="standard" size="large"> </asl-google-signin-button>
+            <asl-google-signin-button type="standard" data-size="large" data-auto-logout-link="false"
+              data-use-continue-as="true"> </asl-google-signin-button>
+            <!-- <asl-google-signin-button type="standard" data-size="large"> </asl-google-signin-button> -->
           </div>
 
           <!-- FACEBOOK LOGIN -->
           <div class="col-md-6">
-            <button class="btn btn-primary btn-block google-sign-in" (click)="facebook()">
-              <span><i class="fa fa-facebook"></i> Sign In with Facebook</span>
+            <button class="btn btn-primary fb-btn" (click)="facebook()">
+              <span><i class="fa fa-facebook"></i>&nbsp; Sign In with Facebook</span>
             </button>
+            <!-- <div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with"
+              data-layout="default" data-auto-logout-link="false" data-use-continue-as="true"></div> -->
           </div>
         </div>
       </div>

@@ -29,9 +29,14 @@ export class AppComponent implements OnInit {
       this.logout();
     }
 
-    timer(0, 1000).subscribe(() => {
+    timer(0, 1000).subscribe( ()=>{
       this.dateTime = new Date()
     })
+    // you can also show live current time, but add async like {{dateTime | async | date:'HH:mm:ss'}}in html file
+    // dateTime!: Observable<Date>;
+    // this.dateTime = timer(0, 1000).pipe(map(() => {
+    //   return new Date()
+    // }))
 
   }
 
@@ -44,7 +49,7 @@ export class AppComponent implements OnInit {
   logout() {
     if (localStorage.getItem('user_auth')) {
       this.router.navigate(['/login']).then(() => {
-        window.location.reload();
+        location.reload();
       });
       console.log('user logout');
       return localStorage.clear();

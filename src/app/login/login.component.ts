@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
   idToken = '1096116863490-snd9d0jjr0hlhbq8dlsi2d5i1kfp7lrc.apps.googleusercontent.com';
   loginStatus: boolean = false;
   invalidCredientials: boolean = false;
-  id: any;
 
   constructor(
     private fb: FormBuilder,
@@ -41,7 +40,7 @@ export class LoginComponent implements OnInit {
     this.authService.authState.subscribe((loginUser) => {
       if (loginUser) {
         this.router.navigate(['/home']).then(() => {
-          window.location.reload();
+          location.reload();
         });
         this.loginStatus = true;
         localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
@@ -66,7 +65,7 @@ export class LoginComponent implements OnInit {
     //     localStorage.setItem('facebook_auth', JSON.stringify(loginUser));
     //     console.log("fb login");
     //     this.router.navigate(['/home']).then( ()=>{
-    //       window.location.reload();
+    //       location.reload();
     //     });
     //   } else {
     //     this.loginStatus = false;
@@ -87,7 +86,7 @@ export class LoginComponent implements OnInit {
 
       if (this.loginUser) {
         this.router.navigate(['/home']).then(() => {
-          window.location.reload();
+          location.reload();
         });
         this.loginStatus = true;
         localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
