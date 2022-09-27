@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   idToken = '1096116863490-snd9d0jjr0hlhbq8dlsi2d5i1kfp7lrc.apps.googleusercontent.com';
   loginStatus: boolean = false;
   invalidCredientials: boolean = false;
-  id :any;
+  id: any;
 
   constructor(
     private fb: FormBuilder,
@@ -40,11 +40,14 @@ export class LoginComponent implements OnInit {
   googleService() {
     this.authService.authState.subscribe((loginUser) => {
       if (loginUser) {
+        this.router.navigate(['/home']).then(() => {
+          window.location.reload();
+        });
         this.loginStatus = true;
         localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
         localStorage.setItem('google_auth', JSON.stringify(loginUser));
         console.log("google login");
-        this.router.navigate(['/home']).then();
+
       } else {
         this.loginStatus = false;
       }
@@ -62,7 +65,9 @@ export class LoginComponent implements OnInit {
     //     localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
     //     localStorage.setItem('facebook_auth', JSON.stringify(loginUser));
     //     console.log("fb login");
-    //     this.router.navigate(['/home']).then();
+    //     this.router.navigate(['/home']).then( ()=>{
+    //       window.location.reload();
+    //     });
     //   } else {
     //     this.loginStatus = false;
     //   }
@@ -81,12 +86,15 @@ export class LoginComponent implements OnInit {
       });
 
       if (this.loginUser) {
+        this.router.navigate(['/home']).then(() => {
+          window.location.reload();
+        });
         this.loginStatus = true;
         localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
         localStorage.setItem('user_auth', JSON.stringify(this.loginUser));
         console.log("user login");
         this.loginForm.reset();
-        this.router.navigate(['/home']).then();
+
       } else {
         this.loginStatus = false;
         this.invalidCredientials = true;

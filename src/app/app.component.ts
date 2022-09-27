@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
       this.logout();
     }
 
-    timer(0, 1000).subscribe( ()=>{
+    timer(0, 1000).subscribe(() => {
       this.dateTime = new Date()
     })
 
@@ -37,14 +37,16 @@ export class AppComponent implements OnInit {
 
 
   loggedIn() {
-    if(this.googleData){ this.photoUrl = this.googleData.photoUrl }
-    if (this.userData){ this.photoUrl = 'assets/2.jpg'}
+    if (this.googleData) { this.photoUrl = this.googleData.photoUrl }
+    if (this.userData) { this.photoUrl = 'assets/2.jpg' }
     return localStorage.getItem('loginStatus');
   }
   logout() {
     if (localStorage.getItem('user_auth')) {
+      this.router.navigate(['/login']).then(() => {
+        window.location.reload();
+      });
       console.log('user logout');
-      this.router.navigate(['login']).then();
       return localStorage.clear();
     } else {
       this.api.signOut();
