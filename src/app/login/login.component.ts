@@ -56,23 +56,23 @@ export class LoginComponent implements OnInit {
   }
 
   // facebook signin
-  facebook() {
-    alert("Sorry!  Having some issues with Facebook login. You can either use Google login or Sigh Up method.")
-    // this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((loginUser) => {
-    //   if (loginUser) {
-    //     this.loginStatus = true;
-    //     localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
-    //     localStorage.setItem('facebook_auth', JSON.stringify(loginUser));
-    //     console.log("fb login");
-    //     this.router.navigate(['/home']).then( ()=>{
-    //       location.reload();
-    //     });
-    //   } else {
-    //     this.loginStatus = false;
-    //   }
-    // }, (err) => {
-    //   console.log("fb err: " + err);
-    // })
+  facebook() { debugger
+    // alert("Sorry!  Having some issues with Facebook login. You can either use Google login or Sigh Up method.")
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((loginUser) => {
+      if (loginUser) {
+        this.loginStatus = true;
+        localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
+        localStorage.setItem('facebook_auth', JSON.stringify(loginUser));
+        console.log("fb login");
+        this.router.navigate(['/home']).then( ()=>{
+          location.reload();
+        });
+      } else {
+        this.loginStatus = false;
+      }
+    }, (err) => {
+      console.log("fb err: " + err);
+    })
   }
 
   // user signin
@@ -93,7 +93,6 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('user_auth', JSON.stringify(this.loginUser));
         console.log("user login");
         this.loginForm.reset();
-
       } else {
         this.loginStatus = false;
         this.invalidCredientials = true;

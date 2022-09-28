@@ -1,10 +1,9 @@
 .inp{
   text-align: right;
 }
-.calculator{
-  margin-left: 2%;
-  margin-top: 3px;
-}
 .table{
-  margin-right: 2%;
+  margin-top: 12px;
+}
+.calculator{
+  margin-left: 20px;
 }

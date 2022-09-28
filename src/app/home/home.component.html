@@ -80,13 +80,13 @@
 
 <!-- CALCULATOR IN RIGHT WITH USER TABLE -->
 <div *ngIf="loginStatus">
-  <div class="row">
+  <div class="row" style="width: 100%;">
     <div class="col-md-3">
       <div class="calculator">
         <h2 class="text-center">Angular Calculator</h2>
 
         <!-- For input values and operators -->
-        <div class="input-group input-group-sm m-0 p-1" style="height: 45px;">
+        <div class="input-group input-group-sm m-0 p-1">
           <input type="text" [(ngModel)]="show" readonly class="form-control text-sm-right inp">
         </div>
 
@@ -128,9 +128,9 @@
     </div>
 
     <!-- REGISTERED USERS TABLE -->
-    <div class="TABLE col-md-9">
+    <div class="col-md-9">
       <h2 class="text-center">All Users</h2>
-      <table class="table table-bordered table-striped mt-3">
+      <table class="table table-bordered table-striped">
         <thead>
           <tr>
             <th style="width: 50px; text-align: center;">ID</th>

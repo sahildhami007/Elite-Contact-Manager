@@ -32,6 +32,9 @@ export class AppComponent implements OnInit {
     timer(0, 1000).subscribe( ()=>{
       this.dateTime = new Date()
     })
+
+    // setTimeout(() => { this.ngOnInit() }, 500)
+
     // you can also show live current time, but add async like {{dateTime | async | date:'HH:mm:ss'}}in html file
     // dateTime!: Observable<Date>;
     // this.dateTime = timer(0, 1000).pipe(map(() => {
@@ -48,9 +51,7 @@ export class AppComponent implements OnInit {
   }
   logout() {
     if (localStorage.getItem('user_auth')) {
-      this.router.navigate(['/login']).then(() => {
-        location.reload();
-      });
+      this.router.navigate(['/login']);
       console.log('user logout');
       return localStorage.clear();
     } else {
