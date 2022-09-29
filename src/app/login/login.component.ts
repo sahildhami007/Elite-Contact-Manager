@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FacebookLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { ApiService } from '../shared/api.service';
 
 @Component({
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
         });
         this.loginStatus = true;
         localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
-        localStorage.setItem('google_auth', JSON.stringify(loginUser));
+        localStorage.setItem('auth', JSON.stringify(loginUser));
         console.log("google login");
 
       } else {
@@ -56,17 +56,17 @@ export class LoginComponent implements OnInit {
   }
 
   // facebook signin
-  facebook() { debugger
-    // alert("Sorry!  Having some issues with Facebook login. You can either use Google login or Sigh Up method.")
+  facebook() {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((loginUser) => {
       if (loginUser) {
-        this.loginStatus = true;
-        localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
-        localStorage.setItem('facebook_auth', JSON.stringify(loginUser));
-        console.log("fb login");
-        this.router.navigate(['/home']).then( ()=>{
+        this.router.navigate(['/home']).then(() => {
           location.reload();
         });
+        console.log(loginUser);
+        this.loginStatus = true;
+        localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
+        localStorage.setItem('auth', JSON.stringify(loginUser));
+        console.log("facebook login");
       } else {
         this.loginStatus = false;
       }

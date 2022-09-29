@@ -10,19 +10,20 @@ import { ApiService } from './shared/api.service';
 })
 
 export class AppComponent implements OnInit {
-  googleData: any;
+  authData: any;
   userData: any;
   photoUrl: any;
   dateTime!: Date;
+  userName: any;
 
   constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit(): void {
-    const google_storage = localStorage.getItem('google_auth');
+    const storage = localStorage.getItem('auth');
     const user_storage = localStorage.getItem('user_auth');
 
-    if (google_storage) {
-      this.googleData = JSON.parse(google_storage);
+    if (storage) {
+      this.authData = JSON.parse(storage);
     } else if (user_storage) {
       this.userData = JSON.parse(user_storage);
     } else {
@@ -33,24 +34,16 @@ export class AppComponent implements OnInit {
       this.dateTime = new Date()
     })
 
-    // setTimeout(() => { this.ngOnInit() }, 500)
-
-    // you can also show live current time, but add async like {{dateTime | async | date:'HH:mm:ss'}}in html file
-    // dateTime!: Observable<Date>;
-    // this.dateTime = timer(0, 1000).pipe(map(() => {
-    //   return new Date()
-    // }))
-
   }
 
 
   loggedIn() {
-    if (this.googleData) { this.photoUrl = this.googleData.photoUrl }
-    if (this.userData) { this.photoUrl = 'assets/2.jpg' }
+    if (this.authData) { this.photoUrl = this.authData.photoUrl; this.userName = this.authData.name }
+    if (this.userData) { this.photoUrl = 'assets/2.jpg'; this.userName = this.userData.name  }
     return localStorage.getItem('loginStatus');
   }
   logout() {
-    if (localStorage.getItem('user_auth')) {
+    if (localStorage.getItem('auth')) {
       this.router.navigate(['/login']);
       console.log('user logout');
       return localStorage.clear();

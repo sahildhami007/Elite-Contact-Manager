@@ -1,7 +1,7 @@
 # Project setup after download Zip from gitHub
 
 npm i
-ng s
+ng s --ssl (<ng serve> is used for http:// & <ng s --ssl> is used for https://)
 
 # Gethomes
 

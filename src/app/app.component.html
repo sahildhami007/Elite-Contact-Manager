@@ -5,6 +5,7 @@
 
     <div class="d-flex">
       <div class="upper-div d-flex">
+        <p *ngIf="loggedIn()" class="user-name"><strong>{{userName}}</strong></p>
         <p>{{dateTime | date:'HH:mm:ss'}}</p>
         <!-- <h6 class="mt-1">{{dateTime | date: 'd MMMM y'}}</h6> -->
         <!-- <p>{{dateTime | date:'short'}}</p> -->

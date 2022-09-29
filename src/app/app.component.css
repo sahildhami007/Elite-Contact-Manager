@@ -1,17 +1,25 @@
 .d-flex {
   color: white;
 }
-img{
+
+.user-name {
+  text-align: left;
+  width: 145px;
+}
+
+img {
   border-radius: 25px;
   height: 40px;
   width: 40px;
   margin-right: 5px;
 }
-.upper-div{
+
+.upper-div {
   position: absolute;
   right: 2.7%;
-  font-size:14;
+  font-size: 14;
 }
-.lower-div{
+
+.lower-div {
   margin-top: 7%;
 }
