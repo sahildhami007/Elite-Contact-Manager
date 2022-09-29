@@ -6,14 +6,15 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './shared/auth.guard';
 import { SignupComponent } from './signup/signup.component';
+import { FacebookModule } from 'ngx-facebook';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   // { path: 'xyz', component: XyzComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'friend', component: FriendComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent},
   { path: 'signup', component: SignupComponent},
+  { path: 'friend', component: FriendComponent, canActivate: [AuthGuard] },
   { path: '**', component: ErrorComponent },
 ];
 

@@ -19,9 +19,6 @@ export class ApiService {
   // auth_signout
   signOut(): void {
     this.authService.signOut();
-    console.log('api logout');
-    this.router.navigate(['login']).then();
-    return localStorage.clear();
   }
 
   // post user

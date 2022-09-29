@@ -30,26 +30,31 @@ export class AppComponent implements OnInit {
       this.logout();
     }
 
-    timer(0, 1000).subscribe( ()=>{
+    timer(0, 1000).subscribe(() => {
       this.dateTime = new Date()
     })
 
   }
 
-
   loggedIn() {
-    if (this.authData) { this.photoUrl = this.authData.photoUrl; this.userName = this.authData.name }
-    if (this.userData) { this.photoUrl = 'assets/2.jpg'; this.userName = this.userData.name  }
+    if (this.authData) {
+      this.photoUrl = this.authData.photoUrl;
+      this.userName = this.authData.name
+    } if (this.userData) {
+      this.photoUrl = 'assets/2.jpg';
+      this.userName = this.userData.name
+    }
     return localStorage.getItem('loginStatus');
   }
+
   logout() {
     if (localStorage.getItem('auth')) {
-      this.router.navigate(['/login']);
-      console.log('user logout');
-      return localStorage.clear();
-    } else {
       this.api.signOut();
     }
+    console.log("Logout");
+    this.router.navigate(['login']).then();
+    return localStorage.clear();
+
   }
 
 }

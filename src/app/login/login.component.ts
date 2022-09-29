@@ -17,13 +17,16 @@ export class LoginComponent implements OnInit {
   idToken = '1096116863490-snd9d0jjr0hlhbq8dlsi2d5i1kfp7lrc.apps.googleusercontent.com';
   loginStatus: boolean = false;
   invalidCredientials: boolean = false;
+  accessToken: any;
 
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router,
     private api: ApiService,
-    private authService: SocialAuthService) { }
+    private authService: SocialAuthService) {
+      localStorage.clear();
+    }
 
   ngOnInit(): void {
 
@@ -36,17 +39,18 @@ export class LoginComponent implements OnInit {
 
   }
 
+  // google signin
   googleService() {
     this.authService.authState.subscribe((loginUser) => {
       if (loginUser) {
         this.router.navigate(['/home']).then(() => {
           location.reload();
         });
-        this.loginStatus = true;
+
+        this.loginStatus = (loginUser != null);
         localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
         localStorage.setItem('auth', JSON.stringify(loginUser));
-        console.log("google login");
-
+        console.log("login");
       } else {
         this.loginStatus = false;
       }
@@ -62,11 +66,9 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/home']).then(() => {
           location.reload();
         });
-        console.log(loginUser);
-        this.loginStatus = true;
+        this.loginStatus = (loginUser != null);
         localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
         localStorage.setItem('auth', JSON.stringify(loginUser));
-        console.log("facebook login");
       } else {
         this.loginStatus = false;
       }
@@ -88,7 +90,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/home']).then(() => {
           location.reload();
         });
-        this.loginStatus = true;
+        this.loginStatus = (this.loginUser != null);
         localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
         localStorage.setItem('user_auth', JSON.stringify(this.loginUser));
         console.log("user login");
