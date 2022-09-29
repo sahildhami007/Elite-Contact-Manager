@@ -7,8 +7,6 @@
       <div class="upper-div d-flex">
         <p *ngIf="loggedIn()" class="user-name"><strong>{{userName}}</strong></p>
         <p>{{dateTime | date:'HH:mm:ss'}}</p>
-        <!-- <h6 class="mt-1">{{dateTime | date: 'd MMMM y'}}</h6> -->
-        <!-- <p>{{dateTime | date:'short'}}</p> -->
       </div>
 
       <div class="lower-div d-flex">
@@ -26,12 +24,8 @@
           <i class="fa-solid fa-address-book"></i>&nbsp;<b>Contact Us</b>
         </a>
       </div>
-
-
     </div>
   </div>
 </nav>
-
-<!-- <app-xyz></app-xyz> -->
 
 <router-outlet></router-outlet>
