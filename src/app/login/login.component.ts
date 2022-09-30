@@ -46,11 +46,11 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/home']).then(() => {
           location.reload();
         });
-
+        // console.log(loginUser);
         this.loginStatus = (loginUser != null);
         localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
         localStorage.setItem('auth', JSON.stringify(loginUser));
-        console.log("login");
+        // console.log("login");
       } else {
         this.loginStatus = false;
       }
@@ -61,20 +61,22 @@ export class LoginComponent implements OnInit {
 
   // facebook signin
   facebook() {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((loginUser) => {
-      if (loginUser) {
-        this.router.navigate(['/home']).then(() => {
-          location.reload();
-        });
-        this.loginStatus = (loginUser != null);
-        localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
-        localStorage.setItem('auth', JSON.stringify(loginUser));
-      } else {
-        this.loginStatus = false;
-      }
-    }, (err) => {
-      console.log("fb err: " + err);
-    })
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
+    // .then((loginUser) => {
+    //   if (loginUser) {
+    //     this.router.navigate(['/home']).then(() => {
+    //       // location.reload();
+    //     });
+    //     // console.log(loginUser);
+    //     this.loginStatus = (loginUser != null);
+    //     localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
+    //     localStorage.setItem('auth', JSON.stringify(loginUser));
+    //   } else {
+    //     this.loginStatus = false;
+    //   }
+    // }, (err) => {
+    //   console.log("fb err: " + err);
+    // })
   }
 
   // user signin
@@ -90,10 +92,11 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/home']).then(() => {
           location.reload();
         });
+        // console.log(this.loginUser);
         this.loginStatus = (this.loginUser != null);
         localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
         localStorage.setItem('user_auth', JSON.stringify(this.loginUser));
-        console.log("user login");
+        // console.log("user login");
         this.loginForm.reset();
       } else {
         this.loginStatus = false;
