@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
     // external login method
     this.authService.authState.subscribe((loginUser) => {
       if (loginUser) {
+        this.loginUser = loginUser;
         this.router.navigate(["home"]).then(() => {
           location.reload();
         });
