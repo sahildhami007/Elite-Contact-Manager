@@ -14,7 +14,7 @@
           <input type="text" formControlName="name" class="form-control" placeholder="Enter Name...">
 
           <div class=" alert alert-danger " *ngIf=" signupForm.controls['name'].dirty &&
-              signupForm.hasError('required', 'name' )">
+                signupForm.hasError('required', 'name' )">
             Name is required</div>
 
           <div *ngIf="!signupForm.hasError('required', 'name' )">
@@ -27,11 +27,11 @@
             <input type="text" formControlName="mobile" class="form-control" placeholder="Enter Mobile No...">
 
             <div class="alert alert-danger " *ngIf="signupForm.controls['mobile']
-              .dirty && signupForm.hasError('required', 'mobile')">
+                .dirty && signupForm.hasError('required', 'mobile')">
               Mobile number is required</div>
 
             <div class="alert alert-danger" *ngIf="signupForm.controls['mobile']
-              .dirty && signupForm.hasError('pattern', 'mobile')">
+                .dirty && signupForm.hasError('pattern', 'mobile')">
               Invalid mobile number (only numbers allowed)</div>
           </div>
 
@@ -40,11 +40,11 @@
             <input type="email" formControlName="email" class="form-control" placeholder="Enter Email...">
 
             <div class="alert alert-danger" *ngIf="signupForm.controls['email']
-              .dirty && signupForm.hasError('required', 'email')">
+                .dirty && signupForm.hasError('required', 'email')">
               Email address is required</div>
 
             <div class="alert alert-danger" *ngIf="signupForm.controls['email']
-              .dirty && signupForm.hasError('pattern', 'email')">
+                .dirty && signupForm.hasError('pattern', 'email')">
               Invalid email address</div>
           </div>
 
@@ -53,7 +53,7 @@
             <input type="password" formControlName="password" class="form-control" placeholder="Enter password...">
 
             <div class="alert alert-danger" *ngIf="signupForm.controls['password']
-              .dirty && signupForm.hasError('required', 'password')">
+                .dirty && signupForm.hasError('required', 'password')">
               Password is required (minimum 6 charactors)</div>
 
             <div class="alert alert-danger" *ngIf="signupForm.hasError('pattern', 'password')">

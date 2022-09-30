@@ -9,7 +9,7 @@ import { SignupComponent } from './signup/signup.component';
 import { FacebookModule } from 'ngx-facebook';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   // { path: 'xyz', component: XyzComponent },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent},
