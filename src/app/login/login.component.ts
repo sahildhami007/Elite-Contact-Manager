@@ -25,8 +25,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private api: ApiService,
     private authService: SocialAuthService) {
-      localStorage.clear();
-    }
+    localStorage.clear();
+  }
 
   ngOnInit(): void {
 
@@ -35,54 +35,31 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]],
     });
 
-    this.googleService();
-
-  }
-
-  // google signin
-  googleService() {
+    // external login method
     this.authService.authState.subscribe((loginUser) => {
       if (loginUser) {
-        this.router.navigate(['/home']).then(() => {
+        this.router.navigate(["home"]).then(() => {
           location.reload();
         });
-        // console.log(loginUser);
         this.loginStatus = (loginUser != null);
         localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
         localStorage.setItem('auth', JSON.stringify(loginUser));
-        // console.log("login");
       } else {
         this.loginStatus = false;
       }
-    }, err => {
-      console.log("google err: " + err);
-    });
+    }, (err) => {
+      console.log("Auth err: " + err);
+    })
   }
 
-  // facebook signin
+  // facebook signin popup
   facebook() {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
-    // .then((loginUser) => {
-    //   if (loginUser) {
-    //     this.router.navigate(['/home']).then(() => {
-    //       // location.reload();
-    //     });
-    //     // console.log(loginUser);
-    //     this.loginStatus = (loginUser != null);
-    //     localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
-    //     localStorage.setItem('auth', JSON.stringify(loginUser));
-    //   } else {
-    //     this.loginStatus = false;
-    //   }
-    // }, (err) => {
-    //   console.log("fb err: " + err);
-    // })
   }
 
-  // user signin
+  // user signin method
   login() {
     this.http.get<any>('http://localhost:3000/signup').subscribe((res) => {
-
       this.loginUser = res.find((a: any) => {
         return (a.email === this.loginForm.value.email
           && a.password === this.loginForm.value.password);
@@ -92,11 +69,9 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/home']).then(() => {
           location.reload();
         });
-        // console.log(this.loginUser);
         this.loginStatus = (this.loginUser != null);
         localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
         localStorage.setItem('user_auth', JSON.stringify(this.loginUser));
-        // console.log("user login");
         this.loginForm.reset();
       } else {
         this.loginStatus = false;
