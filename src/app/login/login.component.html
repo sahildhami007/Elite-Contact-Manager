@@ -16,7 +16,7 @@
             <input type="email" formControlName="email" class="form-control" placeholder="Enter Email...">
 
             <div class="alert alert-danger" *ngIf="loginForm.controls['email'].dirty &&
-            loginForm.hasError('required', 'email')">Username is required</div>
+              loginForm.hasError('required', 'email')">Username is required</div>
           </div>
 
           <div class="mt-1 mb-1">
@@ -24,7 +24,7 @@
             <input type="password" formControlName="password" class="form-control" placeholder="Enter Password...">
 
             <div class="alert alert-danger" *ngIf="loginForm.controls['password'].dirty &&
-            loginForm.hasError('required', 'password')">Password is required</div>
+              loginForm.hasError('required', 'password')">Password is required</div>
           </div>
 
           <div *ngIf="invalidCredientials" class="alert alert-danger">
