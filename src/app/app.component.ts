@@ -27,9 +27,6 @@ export class AppComponent implements OnInit {
     } if (user_storage) {
       this.userData = JSON.parse(user_storage);
     }
-    // else {
-    //   this.logout();
-    // }
 
     timer(0, 1000).subscribe(() => {
       this.dateTime = new Date()
@@ -37,6 +34,7 @@ export class AppComponent implements OnInit {
 
   }
 
+  // login view
   loggedIn() {
     if (this.authData) {
       this.photoUrl = this.authData.photoUrl;
@@ -47,15 +45,14 @@ export class AppComponent implements OnInit {
     }
     return localStorage.getItem('loginStatus');
   }
-
-  logout() { 
+  // logout view
+  logout() {
     if (localStorage.getItem('auth')) {
       this.api.signOut();
     }
     console.log("Logout");
     this.router.navigate(['login'])
     return localStorage.clear();
-
   }
 
 }

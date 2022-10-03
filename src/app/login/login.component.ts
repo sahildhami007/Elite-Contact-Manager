@@ -14,10 +14,8 @@ import { ApiService } from '../shared/api.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   loginUser!: SocialUser | any;
-  idToken = '1096116863490-snd9d0jjr0hlhbq8dlsi2d5i1kfp7lrc.apps.googleusercontent.com';
   loginStatus: boolean = false;
   invalidCredientials: boolean = false;
-  accessToken: any;
 
   constructor(
     private fb: FormBuilder,
@@ -35,41 +33,59 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]],
     });
 
-    // this.api.refreshAuthToken();
-    // this.api.getAccessToken();
-    // this.api.refreshAccessToken();
-
     // external login method
     this.authService.authState.subscribe((loginUser) => {
-      if (loginUser) {
-        this.loginUser = loginUser
-        this.router.navigate(["home"]).then(() => {
-          // location.replace("https://localhost:4200/home");
-          // location.reload();
+      if (loginUser.provider == 'FACEBOOK') {
+        window.fbAsyncInit = function () {
+          FB.init({
+            appId: '408048204743842',
+            cookie: true,
+            xfbml: true,
+            version: 'v15.0'
+          });
+          FB.AppEvents.logPageView();
+        };
+
+        (function (d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) { return; }
+          js = d.createElement(s); js.id = id;
+          // js.src = "https://connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode?.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        FB.getLoginStatus(function (response: any) {
+          console.log(response);
+          if (response.status == 'connected') {
+            alert("User Authorized")
+          }
         });
-        this.loginStatus = (loginUser != null);
-        localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
-        localStorage.setItem('auth', JSON.stringify(loginUser));
-      } else {
-        this.loginStatus = false;
       }
-    }
-    , (err) => {
-      console.log("Auth err: " + err);
+
+      this.loginUser = loginUser;
+      this.router.navigate(["home"]).then(() => {
+        location.replace("https://localhost:4200/home");
+        // location.reload();
+      });
+
+      this.loginStatus = (loginUser != null);
+      localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
+      localStorage.setItem('auth', JSON.stringify(loginUser));
+    }, (err) => {
+      console.log(err);
     })
   }
 
   // facebook signin popup
-  facebook():void {
+  facebook(): void {
     this.api.facebookHandle()
-      this.api.getAccessToken();
   }
   // user signin method
   login() {
     this.http.get<any>('http://localhost:3000/signup').subscribe((res) => {
-      this.loginUser = res.find((a: any) => {
-        return (a.email === this.loginForm.value.email
-          && a.password === this.loginForm.value.password);
+      this.loginUser = res.find((find: any) => {
+        return (find.email === this.loginForm.value.email
+          && find.password === this.loginForm.value.password);
       });
 
       if (this.loginUser) {

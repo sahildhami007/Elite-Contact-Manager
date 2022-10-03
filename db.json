@@ -60,6 +60,13 @@
       "email": "gagan@gmail.com",
       "password": "Gagan@12345",
       "id": 5
+    },
+    {
+      "name": "abc",
+      "mobile": "1111111111",
+      "email": "a@bc.in",
+      "password": "aaAA11!!",
+      "id": 6
     }
   ]
 }

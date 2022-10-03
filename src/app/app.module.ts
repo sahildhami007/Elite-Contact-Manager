@@ -24,7 +24,6 @@ import { SocialLoginModule, GoogleLoginProvider, FacebookLoginProvider, SocialAu
     SignupComponent,
     StrengthCheckerComponent,
     LoginComponent,
-
   ],
   imports: [
     BrowserModule,
