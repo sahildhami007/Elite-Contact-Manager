@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FacebookLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { ApiService } from '../shared/api.service';
 
 @Component({
@@ -29,18 +29,23 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    // user login form
     this.loginForm = this.fb.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
 
+    // this.api.refreshAuthToken();
+    // this.api.getAccessToken();
+    // this.api.refreshAccessToken();
+
     // external login method
     this.authService.authState.subscribe((loginUser) => {
       if (loginUser) {
-        this.loginUser = loginUser;
+        this.loginUser = loginUser
         this.router.navigate(["home"]).then(() => {
-          location.reload();
+          // location.replace("https://localhost:4200/home");
+          // location.reload();
         });
         this.loginStatus = (loginUser != null);
         localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
@@ -48,16 +53,17 @@ export class LoginComponent implements OnInit {
       } else {
         this.loginStatus = false;
       }
-    }, (err) => {
+    }
+    , (err) => {
       console.log("Auth err: " + err);
     })
   }
 
   // facebook signin popup
-  facebook() {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
+  facebook():void {
+    this.api.facebookHandle()
+      this.api.getAccessToken();
   }
-
   // user signin method
   login() {
     this.http.get<any>('http://localhost:3000/signup').subscribe((res) => {
@@ -83,7 +89,6 @@ export class LoginComponent implements OnInit {
       console.log("user err: " + err);
     })
   }
-
 
 }
 // https://www.youtube.com/watch?v=G5HPBdZgcx8

@@ -14,6 +14,7 @@ import { AuthGuard } from './shared/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { SocialLoginModule, GoogleLoginProvider, FacebookLoginProvider, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +53,7 @@ import { SocialLoginModule, GoogleLoginProvider, FacebookLoginProvider, SocialAu
           }
         ],
         onError: (err) => {
-          console.error("appModule  "+err);
+          console.error("appModule  " + err);
         }
       } as SocialAuthServiceConfig
     }
