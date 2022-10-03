@@ -6,7 +6,6 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './shared/auth.guard';
 import { SignupComponent } from './signup/signup.component';
-import { FacebookModule } from 'ngx-facebook';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
