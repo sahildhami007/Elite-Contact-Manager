@@ -16,14 +16,16 @@ export class LoginComponent implements OnInit {
   loginUser!: SocialUser | any;
   loginStatus: boolean = false;
   invalidCredientials: boolean = false;
+  data: any;
 
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router,
     private api: ApiService,
-    private authService: SocialAuthService) {
-    localStorage.clear();
+    private authService: SocialAuthService
+  ) {
+    localStorage.clear()
   }
 
   ngOnInit(): void {
@@ -35,37 +37,24 @@ export class LoginComponent implements OnInit {
 
     // external login method
     this.authService.authState.subscribe((loginUser) => {
-      if (loginUser.provider == 'FACEBOOK') {
-        window.fbAsyncInit = function () {
-          FB.init({
-            appId: '408048204743842',
-            cookie: true,
-            xfbml: true,
-            version: 'v15.0'
-          });
-          FB.AppEvents.logPageView();
-        };
+      if (loginUser.provider === 'FACEBOOK') {
 
-        (function (d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) { return; }
-          js = d.createElement(s); js.id = id;
-          // js.src = "https://connect.facebook.net/en_US/sdk.js";
-          fjs.parentNode?.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-
-        FB.getLoginStatus(function (response: any) {
-          console.log(response);
+        FB.getLoginStatus( (response: any) => {
           if (response.status == 'connected') {
-            alert("User Authorized")
-          }
+            FB.api(
+              "https://graph.facebook.com/v15.0/101894136037442?fields=posts%7Bfull_picture%2Cmessage%2Clikes%2Ccreated_time%7D%2Cname%2Cpicture&access_token=EAAFzHiBLhKIBAA1ofGYU7XTDEWdsSOLuowIR8bi9txPwtKRTeDXdfzuaTtM6I1ppigwQpPXlnsDvTbrgiB0vbRztubVGjEGF4PWRv2NcLP8eVb5vdcrt19ddmBC9veeX275f3kXDM8otTbhZCoQFx4rbHzfSgoVujJyQdooeKsL31j5Ve"
+              , (response: any) => {
+                this.data = response.posts.data
+                console.log(this.data)
+              }
+            );
+          } else {return;}
         });
       }
 
       this.loginUser = loginUser;
-      this.router.navigate(["home"]).then(() => {
-        location.replace("https://localhost:4200/home");
-        // location.reload();
+      this.router.navigate(["login"]).then(() => {
+        // location.replace("https://localhost:4200/home");
       });
 
       this.loginStatus = (loginUser != null);
@@ -90,7 +79,7 @@ export class LoginComponent implements OnInit {
 
       if (this.loginUser) {
         this.router.navigate(['/home']).then(() => {
-          location.reload();
+          location.replace("https://localhost:4200/home");
         });
         this.loginStatus = (this.loginUser != null);
         localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));

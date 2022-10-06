@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
       this.api.signOut();
     }
     console.log("Logout");
-    this.router.navigate(['login'])
+    location.replace('https://localhost:4200/login')
     return localStorage.clear();
   }
 

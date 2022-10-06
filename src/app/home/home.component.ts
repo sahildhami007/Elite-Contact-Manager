@@ -12,12 +12,11 @@ export class HomeComponent implements OnInit {
   show = '0';
   currentValue = '';
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
     this.signUpView();
   }
-
   // view all sighup users
   signUpView() {
     this.api.getAllSignUps().subscribe((res) => {
@@ -25,15 +24,13 @@ export class HomeComponent implements OnInit {
       this.loginStatus = localStorage.getItem('loginStatus');
     });
   }
-
-  // CALCULATOR code begins from here
+  // calculator code
   get firstkey(): string {
     return this.show[0];
   }
   get lastkey(): string {
     return this.show[this.show.length - 1];
   }
-
   pressNum(val: string) {
     if (this.firstkey == '0') {
       this.currentValue = '';
@@ -43,7 +40,6 @@ export class HomeComponent implements OnInit {
     this.show = this.currentValue;
     console.log('Current Value: ' + this.currentValue);
   }
-
   pressOpr(val: string) {
     if (
       this.lastkey === '/' ||
@@ -62,7 +58,6 @@ export class HomeComponent implements OnInit {
     this.show = this.currentValue;
     console.log('Current Value: ' + this.currentValue);
   }
-
   getAnswer() {
     if (this.show == '' || this.show == '0' || this.show == '.') {
       this.show = '0';
@@ -173,7 +168,6 @@ export class HomeComponent implements OnInit {
     }
     console.log('Current Value: ' + this.currentValue);
   }
-
   clear() {
     if (this.show == '' || this.show == '0') {
       this.show = '0';
@@ -189,7 +183,6 @@ export class HomeComponent implements OnInit {
     }
     console.log('Current Value: ' + this.currentValue);
   }
-
   allClear() {
     this.show = '0';
     this.currentValue = '';

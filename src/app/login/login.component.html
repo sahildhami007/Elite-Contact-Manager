@@ -1,8 +1,39 @@
 <div class="container">
+
+  <!-- fb posts -->
+  <hr>
+  <div *ngIf="loginStatus" class="row">
+    <div class="col md-4">
+      <div class="card abc">
+        <table>
+          <tr>
+            <th>photo</th>
+            <th>message</th>
+            <th>time</th>
+          </tr>
+          <tr *ngFor="let item of data">
+            <td><img src="{{item?.full_picture}}" height="150" width="150"></td>
+            <td>{{item?.message}}</td>
+            <td>{{item?.created_time}}</td>
+            <td>
+              <iframe
+                src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&width=60&layout=button&action=like&size=small&share=false&height=65&appId=408048204743842"
+                width="60" height="65" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                allowfullscreen="true"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- login form -->
   <div class="row">
     <div class="col-md-3"> </div>
     <div class="col-md-6">
-      <div class="card mb-3">
+      <div class="card login mb-3">
         <div class="text-center">
           <h2 class="heading"><b>Elite Contact Manager Login</b></h2>
           <h5>🖤 Feel Free to Login here 🖤</h5>

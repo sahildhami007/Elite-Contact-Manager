@@ -1,7 +1,6 @@
 //https://www.youtube.com/watch?v=G5HPBdZgcx8
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { FacebookLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
 
 @Injectable({
@@ -13,21 +12,7 @@ export class ApiService {
 
   constructor(
     private http: HttpClient,
-    private router: Router,
     private authService: SocialAuthService) { }
-
-  refreshAuthToken(): void {
-    this.authService.refreshAuthToken(FacebookLoginProvider.PROVIDER_ID);
-  }
-  getAccessToken(): void {
-    this.authService.getAccessToken(FacebookLoginProvider.PROVIDER_ID);
-  }
-  refreshAccessToken(): void {
-    this.authService.refreshAccessToken(FacebookLoginProvider.PROVIDER_ID);
-  }
-
-
-
 
   // auth_signout
   signOut(): void {

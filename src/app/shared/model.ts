@@ -7,4 +7,3 @@ export class FriendModel {
   country: string = "";
   //imagePath: string = "";
 }
-

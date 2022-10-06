@@ -1,4 +1,4 @@
-.card{
+.login{
   padding: 40px;
   border: 2px solid rgb(139, 139, 139);
   background-color: rgb(240, 240, 260);
@@ -28,3 +28,4 @@ form{
 .fb-btn{
   height: 92%;
 }
+
