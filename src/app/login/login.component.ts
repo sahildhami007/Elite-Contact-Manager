@@ -42,9 +42,9 @@ export class LoginComponent implements OnInit {
         FB.getLoginStatus( (response: any) => {
           if (response.status == 'connected') {
             FB.api(
-              "https://graph.facebook.com/v15.0/101894136037442?fields=posts%7Bfull_picture%2Cmessage%2Clikes%2Ccreated_time%7D%2Cname%2Cpicture&access_token=EAAFzHiBLhKIBAA1ofGYU7XTDEWdsSOLuowIR8bi9txPwtKRTeDXdfzuaTtM6I1ppigwQpPXlnsDvTbrgiB0vbRztubVGjEGF4PWRv2NcLP8eVb5vdcrt19ddmBC9veeX275f3kXDM8otTbhZCoQFx4rbHzfSgoVujJyQdooeKsL31j5Ve"
+              "https://graph.facebook.com/v15.0/101894136037442?fields=posts%7Bfull_picture%2Cmessage%2Ccreated_time%7D%2Cname%2Cpicture&access_token=EAAFzHiBLhKIBAMTILVjI7fJPepcfCArjVTInx6LQZB9uNw5nKyqcvZCnwqu50zeABmtioOkMm5nE2eNBltpMtQ5EW8QUH7HZCuHCJYq4H3c6dEx92ZCRxZChqjj1QNW9pB7CWyywBldETsrjcv7QkBZBzrL8Lj0cForSvZCMfWFpU7K3MA269B0"
               , (response: any) => {
-                this.data = response.posts.data
+                this.data = response.posts.data;
                 console.log(this.data)
               }
             );
