@@ -42,8 +42,10 @@ export class LoginComponent implements OnInit {
         FB.getLoginStatus( (response: any) => {
           if (response.status == 'connected') {
             FB.api(
-              "https://graph.facebook.com/v15.0/101894136037442?fields=posts%7Bfull_picture%2Cmessage%2Ccreated_time%7D%2Cname%2Cpicture&access_token=EAAFzHiBLhKIBAMTILVjI7fJPepcfCArjVTInx6LQZB9uNw5nKyqcvZCnwqu50zeABmtioOkMm5nE2eNBltpMtQ5EW8QUH7HZCuHCJYq4H3c6dEx92ZCRxZChqjj1QNW9pB7CWyywBldETsrjcv7QkBZBzrL8Lj0cForSvZCMfWFpU7K3MA269B0"
+              "https://graph.facebook.com/v15.0/101894136037442?fields=posts%7Bfull_picture%2Ccreated_time%2Cmessage%7D&access_token=EAAFzHiBLhKIBAKpiSAaIWpsJdDelpLhZBJ0yeJFGkucBgfked7TlT6gRDUMkYgUZAugoYvlaQOOY3TzmrBlK87IvVvrLmX4PZAAkGWUMG7ZCnq2xVNJSTwndygQzqCiaCAb0dFydXGXXMPHvWdQqHy2JC4X9UUHZBsfyFJK34ECAm6iLIgOIU"
               , (response: any) => {
+                // if you face any issue while logged in with fb then plz update FB.api url, update get cmd in fb developer site
+                // copy getcode>curl and conver in node.js from https://onlinedevtools.in/curl, paste only the api url at 45.
                 this.data = response.posts.data;
                 console.log(this.data)
               }
