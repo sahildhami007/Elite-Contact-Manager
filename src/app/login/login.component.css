@@ -31,3 +31,13 @@ form{
 .items{
   padding: 5%;
 }
+.posts{
+  margin-top: 1.5%;
+}
+.card-img-top{
+  height: 240px;
+}
+.card-body{
+  height: 185px;
+  max-height: 185px;
+}

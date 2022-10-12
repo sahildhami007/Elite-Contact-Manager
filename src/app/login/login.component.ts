@@ -39,29 +39,46 @@ export class LoginComponent implements OnInit {
     this.authService.authState.subscribe((loginUser) => {
       if (loginUser.provider === 'FACEBOOK') {
 
-        FB.getLoginStatus( (response: any) => {
+        FB.getLoginStatus((response: any) => {
+          console.log("accessToken is:-- " + response.authResponse.accessToken);
           if (response.status == 'connected') {
             FB.api(
-              "https://graph.facebook.com/v15.0/101894136037442?fields=posts%7Bfull_picture%2Ccreated_time%2Cmessage%7D&access_token=EAAFzHiBLhKIBAKpiSAaIWpsJdDelpLhZBJ0yeJFGkucBgfked7TlT6gRDUMkYgUZAugoYvlaQOOY3TzmrBlK87IvVvrLmX4PZAAkGWUMG7ZCnq2xVNJSTwndygQzqCiaCAb0dFydXGXXMPHvWdQqHy2JC4X9UUHZBsfyFJK34ECAm6iLIgOIU"
+              'https://graph.facebook.com/v15.0/101894136037442?fields=posts%7Bmessage%2Ccreated_time%2Cfull_picture%7D&access_token=EAAFzHiBLhKIBAHuGqXSIBwBw10QqdCcyxhbTZAihHSZBpmrVOq24qTPPCUdECsbjyszxBmPkUuV27aAM6pi8RTWDxTCj8b4AqZCGYoYGWeaTLwpfb190Ry6PJOZAz4GNcsgYuemkz7eG3HCZAdWNNtIWt5RLRbHVbbnr7dndCWVzzwiTCxIxp'
               , (response: any) => {
+                console.log("page_token is:-- " + response.page_token);
                 // if you face any issue while logged in with fb then plz update FB.api url, update get cmd in fb developer site
                 // copy getcode>curl and conver in node.js from https://onlinedevtools.in/curl, paste only the api url at 45.
                 this.data = response.posts.data;
-                console.log(this.data)
+                console.log(this.data);
+                // console.log(this.data[0].actions[0].link);
+
+                // console.log(this.data?.likes);
               }
             );
-          } else {return;}
+          } else { return; }
         });
+
+        this.loginUser = loginUser;
+        this.router.navigate(["login"]).then(() => {
+          // location.replace("https://localhost:4200/home");
+        });
+
+        this.loginStatus = (loginUser != null);
+        localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
+        localStorage.setItem('auth', JSON.stringify(loginUser));
       }
 
-      this.loginUser = loginUser;
-      this.router.navigate(["login"]).then(() => {
-        // location.replace("https://localhost:4200/home");
-      });
+      if (loginUser.provider === 'GOOGLE') {
+        this.loginUser = loginUser;
+        this.router.navigate(["home"]).then(() => {
+          location.replace("https://localhost:4200/home");
+        });
 
-      this.loginStatus = (loginUser != null);
-      localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
-      localStorage.setItem('auth', JSON.stringify(loginUser));
+        this.loginStatus = (loginUser != null);
+        localStorage.setItem('loginStatus', JSON.stringify(this.loginStatus));
+        localStorage.setItem('auth', JSON.stringify(loginUser));
+      }
+
     }, (err) => {
       console.log(err);
     })

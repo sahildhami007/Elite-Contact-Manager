@@ -1,23 +1,38 @@
 <div class="container">
 
+  <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="button"
+    data-action="like" data-size="small" data-share="false"></div>
+
   <!-- fb posts -->
-  <div *ngIf="loginStatus" class="facebook-posts row mb-5">
-    <div class="col-md-3" *ngFor="let item of data">
-      <div class="card">
-        <img src="{{item?.full_picture}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <p class="card-text">{{item?.created_time | date:'h:mm, MMM d, y'}}</p>
-          <h5 class="card-title">{{item?.message}}</h5>
-          <iframe
-            src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&width=60&layout=button&action=like&size=small&share=false&height=65&appId=408048204743842"
-            width="60" height="65" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
-            allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-          </iframe>
+  <div *ngIf="loginStatus" class="facebook-posts">
+    <div>
+      <h2>Facebook Posts</h2>
+      <div class="row mb-5">
+        <div class="col-md-3 posts" *ngFor="let item of data">
+          <div class="card">
+            <img src="{{item?.full_picture}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">{{item?.created_time | date:'h:mm, MMM d, y'}}</p>
+
+              <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width=""
+                data-layout="button" data-action="like" data-size="small" data-share="false"></div>
+
+              <a target="_blank" href='https://www.facebook.com/105751905654454/posts/101967406032904'
+                class="btn btn-primary">Like</a>
+
+              <h5 class="card-title">{{item?.message}}</h5>
+
+
+            </div>
+          </div>
         </div>
       </div>
+      <hr>
     </div>
+
   </div>
-  <hr>
+
+
   <!-- login form -->
   <div *ngIf="!loginStatus" class="row">
     <div class="col-md-3"> </div>
