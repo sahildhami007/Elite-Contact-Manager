@@ -17,7 +17,9 @@ export class LoginComponent implements OnInit {
   loginStatus: boolean = false;
   invalidCredientials: boolean = false;
   data: any;
-
+  accessToken = '';
+  page_token = '';
+  
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
@@ -37,26 +39,30 @@ export class LoginComponent implements OnInit {
 
     // external login method
     this.authService.authState.subscribe((loginUser) => {
+      console.log(loginUser);
       if (loginUser.provider === 'FACEBOOK') {
 
         FB.getLoginStatus((response: any) => {
-          console.log("accessToken is:-- " + response.authResponse.accessToken);
+          console.log(response);
+          this.accessToken = response.authResponse.accessToken;
+          console.log("accessToken is:-- " + this.accessToken);
           if (response.status == 'connected') {
-            FB.api(
-              'https://graph.facebook.com/v15.0/101894136037442?fields=posts%7Bmessage%2Ccreated_time%2Cfull_picture%7D&access_token=EAAFzHiBLhKIBAHuGqXSIBwBw10QqdCcyxhbTZAihHSZBpmrVOq24qTPPCUdECsbjyszxBmPkUuV27aAM6pi8RTWDxTCj8b4AqZCGYoYGWeaTLwpfb190Ry6PJOZAz4GNcsgYuemkz7eG3HCZAdWNNtIWt5RLRbHVbbnr7dndCWVzzwiTCxIxp'
-              , (response: any) => {
-                console.log("page_token is:-- " + response.page_token);
-                // if you face any issue while logged in with fb then plz update FB.api url, update get cmd in fb developer site
-                // copy getcode>curl and conver in node.js from https://onlinedevtools.in/curl, paste only the api url at 45.
-                this.data = response.posts.data;
-                console.log(this.data);
-                // console.log(this.data[0].actions[0].link);
+            var url = 'https://graph.facebook.com/v15.0/101894136037442?fields=page_token,posts{message,full_picture,created_time,actions,likes}&access_token=EAAFzHiBLhKIBAFTpAhFzG2NHzgtBBtTCT6EjEcoFkMQQJzDtanL2KNFqvhQftHFfenmZB8nVSBZAoKkKcs0nFZBIpyIcwpYsPniL0h867Ea9Wp7GWMB7eATQhbpV61KOv63iqgOdy18vOX2gZCjlLSOE9btYsmaKPwiJ6vQ74ZCC5vpcKd641';
+            // if you face any issue while logged in with fb then plz update FB.api url, update get cmd in fb developer site
+            // copy 'getcode>curl' from graph api and convert in node.js from https://onlinedevtools.in/curl, paste only the api url at 45.
 
-                // console.log(this.data?.likes);
-              }
-            );
+            FB.api(url, (res: any) => {
+              console.log(res);
+              this.page_token = response.page_token;
+              this.data = res.posts.data;
+            });
           } else { return; }
         });
+
+        //////////////////////////////////////////////////
+        //   this.data = response.posts.data;
+        //   // console.log(this.data[0].actions[0].link);
+        //////////////////////////////////////////////////
 
         this.loginUser = loginUser;
         this.router.navigate(["login"]).then(() => {
@@ -82,6 +88,9 @@ export class LoginComponent implements OnInit {
     }, (err) => {
       console.log(err);
     })
+  }
+  alertt() {
+    alert('like hit')
   }
 
   // facebook signin popup

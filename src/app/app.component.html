@@ -14,11 +14,13 @@
           <img [src]="photoUrl">
         </div>
 
-        <button *ngIf="!loggedIn()" routerLink="login" class="btn btn-dark">
-          <i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;<b>Login</b></button>
+        <a *ngIf="!loggedIn()" routerLink="login" class="btn btn-dark">
+          <i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;<b>Login</b>
+        </a>
 
-        <button *ngIf="loggedIn()" (click)="logout()" class="btn btn-dark">
-          <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;<b>Logout</b></button>
+        <a *ngIf="loggedIn()" class="btn btn-dark" (click)="logout()">
+          <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;<b>Logout</b>
+        </a>
 
         <a class="btn btn-dark" href="https://elitewebtechnologies.com/contact-us" target="_blank">
           <i class="fa-solid fa-address-book"></i>&nbsp;<b>Contact Us</b>
