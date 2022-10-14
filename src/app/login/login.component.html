@@ -1,9 +1,8 @@
 <div class="container">
 
-  <div class="fb-like" (click)="alertt()" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="button"
+  <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="button"
     data-action="like" data-size="small" data-share="false">
   </div>
-
 
   <!-- fb posts -->
   <div *ngIf="loginStatus" class="facebook-posts">
@@ -19,8 +18,8 @@
               <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width=""
                 data-layout="button" data-action="like" data-size="small" data-share="false"></div>
 
-              <a target="_blank" href='https://www.facebook.com/105751905654454/posts/101967406032904'
-                class="btn btn-primary">Like</a>
+              <a class="btn btn-sm btn-primary" (click)="like()">Like</a> &nbsp;&nbsp;
+              <a class="btn btn-sm btn-danger" (click)="unlike()">Unlike</a>
 
               <h5 class="card-title">{{item?.message}}</h5>
             </div>

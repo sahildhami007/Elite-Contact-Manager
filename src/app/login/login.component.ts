@@ -17,9 +17,9 @@ export class LoginComponent implements OnInit {
   loginStatus: boolean = false;
   invalidCredientials: boolean = false;
   data: any;
-  accessToken = '';
-  page_token = '';
-  
+  accessToken ='EAAFzHiBLhKIBAGJPIPK5ML1LD0JaWCaRb3b3gFlLcXzuAUPYQT8hzI8GZBDdzmw27fZCcvOk7lOMutDoFPZBOFkd5O1u2TgDX27mfr0W9DUCgh86tL89JOWE0ZAITvfHvZAVpELc6MTHfvGZBx1n8JylvTlLUlkWtTcs1dgMIdepptU99JAsSY';
+  pageId = '101894136037442';
+
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
@@ -39,30 +39,22 @@ export class LoginComponent implements OnInit {
 
     // external login method
     this.authService.authState.subscribe((loginUser) => {
-      console.log(loginUser);
       if (loginUser.provider === 'FACEBOOK') {
+        FB.getLoginStatus((res: any) => {
+          if (res.authResponse) {
+            console.log(res.authResponse.accessToken);
 
-        FB.getLoginStatus((response: any) => {
-          console.log(response);
-          this.accessToken = response.authResponse.accessToken;
-          console.log("accessToken is:-- " + this.accessToken);
-          if (response.status == 'connected') {
-            var url = 'https://graph.facebook.com/v15.0/101894136037442?fields=page_token,posts{message,full_picture,created_time,actions,likes}&access_token=EAAFzHiBLhKIBAFTpAhFzG2NHzgtBBtTCT6EjEcoFkMQQJzDtanL2KNFqvhQftHFfenmZB8nVSBZAoKkKcs0nFZBIpyIcwpYsPniL0h867Ea9Wp7GWMB7eATQhbpV61KOv63iqgOdy18vOX2gZCjlLSOE9btYsmaKPwiJ6vQ74ZCC5vpcKd641';
-            // if you face any issue while logged in with fb then plz update FB.api url, update get cmd in fb developer site
-            // copy 'getcode>curl' from graph api and convert in node.js from https://onlinedevtools.in/curl, paste only the api url at 45.
+            console.log('Welcome!  Fetching your information.... ');
 
-            FB.api(url, (res: any) => {
+            // you have to add manually access token value
+            FB.api("/"+this.pageId+"?fields=posts{full_picture,created_time,message}&access_token="+this.accessToken, (res: any) => {
               console.log(res);
-              this.page_token = response.page_token;
               this.data = res.posts.data;
             });
-          } else { return; }
+          } else {
+            console.log('User cancelled login or did not fully authorize.');
+          }
         });
-
-        //////////////////////////////////////////////////
-        //   this.data = response.posts.data;
-        //   // console.log(this.data[0].actions[0].link);
-        //////////////////////////////////////////////////
 
         this.loginUser = loginUser;
         this.router.navigate(["login"]).then(() => {
@@ -89,14 +81,31 @@ export class LoginComponent implements OnInit {
       console.log(err);
     })
   }
-  alertt() {
-    alert('like hit')
-  }
 
   // facebook signin popup
   facebook(): void {
     this.api.facebookHandle()
   }
+
+  // like facebook post method
+  like() {
+    let postid = '101894136037442_101967406032904'  // first post's id
+    // FB.api("/" + postid + "?like&access_token=" + this.accessToken, res => {
+    // FB.api(`/${postid}?like&access_token=${this.accessToken}`, res => {
+    FB.api(`/${postid}?like&access_token=${this.accessToken}`, res => {
+      console.log(res);
+    });
+  }
+
+  // unlike facebook post method
+  unlike() {
+    let postid = '101894136037442_101967406032904'  // first post's id
+    FB.api("/" + postid + "?unlike&access_token=" + this.accessToken, res => {
+      console.log(res);
+    });
+  }
+
+
   // user signin method
   login() {
     this.http.get<any>('http://localhost:3000/signup').subscribe((res) => {
